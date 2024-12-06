@@ -5,10 +5,11 @@ import { DetectOS, GetBrowser, GetUserIp } from "@/services/getUserDevices";
 import Link from "next/link";
 import "./index.css";
 import { gmt } from "@/lib/gmt";
+import { utmKeys } from "@/lib/umt";
 
 export default function PresentationModal({ setOpen, type, projectId }) {
   const [active, setActive] = useState("phone");
-  const [buttonEnabled, setbuttonEnabled] = useState(false);
+  const [buttonDisabled, setButtonDisable] = useState(true);
   const sendButton = useRef(null);
   const [ip, setIp] = useState();
 
@@ -35,9 +36,9 @@ export default function PresentationModal({ setOpen, type, projectId }) {
 
   const ToggleBtn = (value) => {
     if (value.length === 16) {
-      setbuttonEnabled(true);
+      setButtonDisable(false);
     } else {
-      setbuttonEnabled(false);
+      setButtonDisable(true);
     }
   };
 
@@ -82,20 +83,6 @@ export default function PresentationModal({ setOpen, type, projectId }) {
   useEffect(() => {
     if (searchParams) {
       const params = Object.fromEntries(searchParams.entries());
-      const utmKeys = [
-        "utm_source",
-        "utm_source_type",
-        "utm_medium",
-        "utm_campaign",
-        "utm_campaign_name",
-        "utm_region_name",
-        "utm_term",
-        "utm_content",
-        "utm_placement",
-        "utm_position",
-        "utm_position_type",
-        "yclid",
-      ];
       const filteredParams = utmKeys.reduce((acc, key) => {
         if (params[key]) acc[key] = params[key];
         return acc;
@@ -104,7 +91,6 @@ export default function PresentationModal({ setOpen, type, projectId }) {
       setUtmParams(filteredParams);
     }
   }, [searchParams]);
-  console.log(gmt);
 
   async function Record(event) {
     event.preventDefault();
@@ -120,6 +106,7 @@ export default function PresentationModal({ setOpen, type, projectId }) {
     formData.append("utm_placement", utmParams.utm_placement);
     formData.append("utm_position", utmParams.utm_position);
     formData.append("utm_position_type", utmParams.utm_position_type);
+    formData.append("utm_device", utmParams.utm_device);
     formData.append("yclid", utmParams.yclid);
     formData.append("platform", DetectOS());
     formData.append("browser", GetBrowser());
@@ -147,10 +134,13 @@ export default function PresentationModal({ setOpen, type, projectId }) {
       setOpen(false);
     }
     if (result.status === 200) {
-      alert("Форма отправлена");
+      setButtonDisable(true);
+      const json = await result.json();
+      alert(json.data.message);
     }
     if (result.status != 200) {
-      alert("Ошибка отправки формы");
+      const json = await result.json();
+      json.data.message;
     }
   }
 
@@ -308,7 +298,7 @@ export default function PresentationModal({ setOpen, type, projectId }) {
             ref={sendButton}
             className="btn submit btn-yellow big-btn"
             style={{ width: "100%", textAlign: "center" }}
-            disabled={!buttonEnabled}
+            disabled={buttonDisabled}
           >
             Получить презентацию
           </button>
