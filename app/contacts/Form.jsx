@@ -73,21 +73,26 @@ export default function Form() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     formData.append("utm_source", utmParams.utm_source);
+    formData.append("utm_source_type", utmParams.utm_source_type);
     formData.append("utm_medium", utmParams.utm_medium);
     formData.append("utm_campaign", utmParams.utm_campaign);
-    formData.append("utm_term", utmParams.utm_term);
+    formData.append("utm_campaign_name", utmParams.utm_campaign_name);
     formData.append("utm_content", utmParams.utm_content);
-    formData.append("utm_placement", utmParams.utm_placement);
     formData.append("utm_region_name", utmParams.utm_region_name);
+    formData.append("utm_term", utmParams.utm_term);
+    formData.append("utm_placement", utmParams.utm_placement);
+    formData.append("utm_position", utmParams.utm_position);
+    formData.append("utm_position_type", utmParams.utm_position_type);
+    formData.append("yclid", utmParams.utm_yclid);
     formData.append("platform", DetectOS());
     formData.append("browser", GetBrowser());
     formData.append("ip", ip);
     formData.set("phone", formData.get("phone").replace(/[- )(]/g, ""));
-
+    /*
     for (var pair of formData.entries()) {
       console.log(pair[0] + ": " + pair[1]);
     }
-
+*/
     let formObject = {};
     formData.forEach(function (value, key) {
       formObject[key] = value;
@@ -123,7 +128,7 @@ export default function Form() {
         <div className="input-box">
           <input
             type="text"
-            name="name"
+            name="fullname"
             autoComplete="off"
             placeholder="Как к вам обращаться"
             required
