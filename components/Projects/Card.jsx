@@ -40,13 +40,13 @@ export default function Card({ p, pbArr }) {
                   <strong>
                     <div className={styles.label}>Инвестиции</div>
                   </strong>
-                  <div className={styles.value}>{p.invest}</div>
+                  <div className={styles.value}>{p.invest} &#8381;</div>
                 </li>
                 <li>
                   <strong>
                     <div className={styles.label}>Доходность *</div>
                   </strong>
-                  <div className={styles.value}>{p.profit}</div>
+                  <div className={styles.value}>{p.profit} в месяц</div>
                 </li>
               </ul>
               <div className={styles.button}>

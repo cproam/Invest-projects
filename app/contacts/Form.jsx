@@ -53,12 +53,17 @@ export default function Form() {
       const params = Object.fromEntries(searchParams.entries());
       const utmKeys = [
         "utm_source",
+        "utm_source_type",
         "utm_medium",
         "utm_campaign",
+        "utm_campaign_name",
+        "utm_region_name",
         "utm_term",
         "utm_content",
         "utm_placement",
-        "utm_region_name",
+        "utm_position",
+        "utm_position_type",
+        "yclid",
       ];
       const filteredParams = utmKeys.reduce((acc, key) => {
         if (params[key]) acc[key] = params[key];
@@ -83,7 +88,7 @@ export default function Form() {
     formData.append("utm_placement", utmParams.utm_placement);
     formData.append("utm_position", utmParams.utm_position);
     formData.append("utm_position_type", utmParams.utm_position_type);
-    formData.append("yclid", utmParams.utm_yclid);
+    formData.append("yclid", utmParams.yclid);
     formData.append("platform", DetectOS());
     formData.append("browser", GetBrowser());
     formData.append("ip", ip);

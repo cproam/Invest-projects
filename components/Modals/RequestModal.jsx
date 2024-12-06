@@ -62,12 +62,17 @@ export default function RequestModal({ setShowModal, type }) {
       const params = Object.fromEntries(searchParams.entries());
       const utmKeys = [
         "utm_source",
+        "utm_source_type",
         "utm_medium",
         "utm_campaign",
+        "utm_campaign_name",
+        "utm_region_name",
         "utm_term",
         "utm_content",
         "utm_placement",
-        "utm_region_name",
+        "utm_position",
+        "utm_position_type",
+        "yclid",
       ];
       const filteredParams = utmKeys.reduce((acc, key) => {
         if (params[key]) acc[key] = params[key];
