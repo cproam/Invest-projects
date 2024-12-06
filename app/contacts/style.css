@@ -1,0 +1,328 @@
+.page-title {
+    margin: 0px 0 38px;
+    padding-top: 75px;
+    border-color: #dedfe1;
+    font-size: 40px;
+    font-weight: 500;
+    padding-bottom: 31px;
+    border-bottom: thin solid rgb(179 198 198 / 25%);
+}
+
+.grey-block .page-title {
+    color: #0c0c0e;
+    margin: 0px 0 38px;
+    padding-top: 75px;
+    border-color: #dedfe1;
+    font-weight: 500;
+    padding-bottom: 31px;
+}
+
+a.big-phone {
+    font-size: 69px;
+    display: inline-block;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+a.email-href {
+    color: #56a7fb;
+    font-size: 34px;
+}
+
+
+form.form-box.flex-wrap {
+    background: white;
+    border-radius: 10px;
+    margin: 44px 0 53px;
+    padding: 39px 49px 46px;
+}
+
+form.form-box.flex-wrap .title {
+    color: black;
+    font-size: 30px;
+    width: 100%;
+    margin-bottom: 34px;
+    font-weight: 600;
+}
+
+
+form.form-box.flex-wrap input {
+    background: #f1f2f4;
+    /*  width: 32%;*/
+    margin-bottom: 27px;
+}
+
+form.form-box input {
+    background: white;
+    border-radius: 8px;
+    /* width: 26%;*/
+    color: black;
+    height: 55px;
+    padding-left: 33px;
+    font-size: 18px;
+}
+
+.btn-form {
+    font-size: 19px !important;
+    padding: 25px 33px;
+}
+
+textarea {
+    resize: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+form.form-box.flex-wrap textarea {
+    width: 100%;
+    min-height: 111px;
+    background: #f1f2f4;
+    padding: 26px 30px 17px;
+    display: block;
+    height: auto;
+    color: black;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 26px;
+}
+
+form.form-box .btn.submit {
+    font-size: 17px;
+    padding: 17px 69px;
+    text-align: center;
+}
+
+.btn-form {
+    font-size: 19px;
+}
+
+
+.polit-descr {
+    color: black;
+    white-space: pre-line;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    font-size: 14px;
+    line-height: 160%;
+}
+
+.contacts-btn {
+    margin-left: 30px;
+    align-items: center;
+    display: flex;
+}
+
+.polit-descr a {
+    color: #56a7fb;
+}
+
+.flex-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    display: -webkit-flex;
+    -webkit-flex-wrap: wrap;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    -o-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+
+form.form-box.blue-box input {
+    /*   width: 26%;*/
+    background: white;
+    margin-bottom: 0;
+}
+
+form.form-box.blue-box .input-box input {
+    width: 100%;
+}
+
+form.form-box.flex-wrap .input-box input {
+    width: 100%;
+}
+
+
+.input-wr {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+
+@media (max-width: 1620px) {
+    form.form-box.flex-wrap {
+        background: white;
+        border-radius: 10px;
+        margin: 28px 0 53px;
+        padding: 44px 49px 40px;
+    }
+
+    a.big-phone {
+        font-size: 60px;
+        margin: 14px 0 20px;
+    }
+
+    a.email-href {
+        color: #56a7fb;
+        font-size: 25px;
+    }
+
+    .btn-form {
+        margin-bottom: 10px;
+    }
+
+    .polit-descr {
+        margin-left: 0;
+    }
+
+    .contacts-btn {
+        display: block;
+    }
+}
+
+
+@media (max-width: 1170px) {
+    .page-title {
+        margin: 0px 0 39px;
+        font-size: 32px;
+        padding-bottom: 16px;
+    }
+
+    form.form-box.flex-wrap .title {
+        color: black;
+        font-size: 20px;
+        width: 100%;
+        margin-bottom: 17px;
+    }
+
+    form.form-box.flex-wrap {
+        background: white;
+        border-radius: 10px;
+        margin: 42px 0 53px;
+        padding: 23px 29px 25px;
+    }
+
+    form.form-box.flex-wrap textarea {
+        min-height: 81px;
+        padding: 18px 19px 11px;
+        font-size: 14px;
+        margin-bottom: 19px;
+    }
+
+    form.form-box.flex-wrap input {
+        /*  width: 33%;*/
+        margin-bottom: 5px;
+        /* width: 26%; */
+        height: 53px;
+        padding-left: 23px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 767px) {
+    .page-title {
+        margin: 0px 0 18px;
+        padding: 31px 0 17px 0;
+        line-height: 127%;
+        font-size: 24px;
+        white-space: normal;
+    }
+
+    .input-wr {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+
+
+    form.form-box.flex-wrap .title {
+        color: black;
+        font-size: 16px;
+        width: 60%;
+        margin-bottom: 17px;
+    }
+
+    form.form-box.flex-wrap {
+        background: white;
+        border-radius: 10px;
+        margin: 42px 0 53px;
+        padding: 18px 23px 5px;
+    }
+
+    form.form-box.flex-wrap textarea {
+        min-height: 139px;
+        margin-bottom: 12px;
+    }
+
+    a.big-phone {
+        font-size: 38px;
+        margin: 14px 0 13px;
+    }
+
+    a.email-href {
+        color: #56a7fb;
+        font-size: 24px;
+        font-weight: 500;
+        font-size: 23px;
+    }
+
+    form.form-box.flex-wrap .btn .submit {
+        margin: 0px 0;
+        font-size: 16px;
+        padding: 21px 45px;
+        margin: 10px auto 12px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .polit-descr {
+        color: black;
+        white-space: normal;
+        -webkit-box-flex: 0;
+        -ms-flex-positive: 0;
+        flex-grow: 0;
+        font-size: 12px;
+        margin-left: 0px;
+        line-height: 148%;
+        padding-top: 4px;
+        padding-bottom: 18px;
+    }
+
+}
+
+@media (max-width: 425px) {
+
+    .btn-form {
+        width: 100% !important;
+        text-align: center;
+    }
+
+    .btn-form {
+        font-size: 16px;
+        padding: 25px 10px;
+    }
+}
+
+@media (max-width: 365px) {
+    a.big-phone {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 340px) {
+    form.form-box.flex-wrap .title {
+        width: 75%;
+    }
+
+    .page-title {
+        font-size: 22px;
+    }
+}

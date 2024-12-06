@@ -1,0 +1,275 @@
+.item {
+    padding: 20px;
+    background-color: var(--color-bg-item);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 600px 1fr 1fr;
+    grid-template-rows: 75px 168px auto;
+    gap: 20px;
+    color: var(--color-text-item);
+}
+
+.item .header {
+    grid-column: 2 / 4;
+    grid-row: 1 / 1;
+
+}
+
+.item .title {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.item .tag {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.item .description {
+    grid-column: 2 / 4;
+    grid-row: 2 / 2;
+    align-content: flex-start;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    font-size: 18px;
+    font-weight: 500;
+
+}
+
+
+.item .footer {
+    grid-column: 2 / 4;
+    grid-row: 3 / 3;
+}
+
+
+.item .footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-top: auto;
+}
+
+.item .footer .params {
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+.item .footer .button .btn-yellow {
+    padding: 25px 40px;
+}
+
+.button>button {
+    font-size: 18px !important;
+}
+
+.item .params {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--color-border-params);
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 130%;
+    white-space: nowrap;
+}
+
+.item .params li {
+    border-right: 1px solid var(--color-border-params);
+    flex-basis: 50%;
+    padding: 10px 20px;
+}
+
+.item .params li:last-child {
+    border-right: none;
+}
+
+@media screen and (max-width: 1620px) {
+    .item .title {
+        font-size: 26px;
+    }
+}
+
+
+@media screen and (max-width: 1430px) {
+
+    .button>button {
+        font-size: 16px !important;
+    }
+}
+
+
+
+@media screen and (max-width: 1400px) {
+    .item .params {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 1315px) {
+
+    .button>button {
+        font-size: 13px !important;
+    }
+}
+
+
+@media screen and (max-width: 1280px) {
+    .item {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .button>button {
+        font-size: 16px !important;
+    }
+
+    .item .params {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .item .footer .button .btn-yellow {
+        padding: 15px 40px;
+    }
+}
+
+
+@media screen and (max-width: 920px) {
+    .item .footer {
+        gap: 30px;
+    }
+
+    .item .title {
+        font-size: 20px;
+    }
+}
+
+
+@media screen and (max-width: 850px) {
+
+    .item .params .label {
+        text-align: center;
+    }
+
+    .item .params .value {
+        text-align: center;
+    }
+
+    .item .footer {
+        gap: 10px;
+    }
+
+    .item {
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .item {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .item .title {
+        font-size: 24px;
+    }
+
+    .item .description p {
+        font-size: 14px;
+    }
+
+    .button>button {
+        font-size: 16px !important;
+        padding: 18px 10px !important;
+    }
+
+    .item .params {
+        font-size: 16px;
+
+    }
+}
+
+
+@media screen and (max-width: 675px) {
+    .item .footer {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .item .params {
+        width: 100%;
+    }
+
+    .item {
+        min-height: 500px;
+    }
+}
+
+@media screen and (max-width: 490px) {
+    .item .title {
+        line-height: 1.3;
+    }
+
+    .item .footer .params {
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .item .footer {
+        flex-direction: column;
+
+    }
+
+    .item .footer .button {
+        width: 100%;
+    }
+
+    .item .footer .button>button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .item .footer .button .btn-yellow {
+        width: 100%;
+        text-align: center;
+        padding: 15px 20px;
+    }
+
+    .item .params li {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+
+@media screen and (max-width: 425px) {
+    .item .footer .params {
+        flex-direction: column;
+    }
+
+    .item .params li {
+        border-right: 0px;
+        padding: 5px 10px;
+    }
+
+}
+
+@media screen and (max-width: 373px) {
+    .item .params {
+        font-size: 18px;
+    }
+}

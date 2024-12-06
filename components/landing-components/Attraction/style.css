@@ -1,0 +1,331 @@
+.attraction {
+    background: rgb(12, 54, 122);
+    background: radial-gradient(circle, rgba(12, 54, 122, 1) 0%, rgba(2, 0, 36, 1) 80%);
+    max-width: 1920px;
+    margin: auto;
+}
+
+.attraction__content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 75px;
+}
+
+.attraction__content>div {
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+.attraction__content>div {
+    width: 360px;
+
+}
+
+.attraction__content>div>p>span {
+    font-size: 40px;
+}
+
+.attraction-img {
+    position: relative;
+}
+
+.attraction-img>span {
+    position: absolute;
+    font-size: 24px;
+    color: rgb(115, 212, 255);
+}
+
+.img-1 {
+    top: 45px;
+    left: 15%;
+}
+
+
+.img-2 {
+    top: -48px;
+    left: 50%;
+}
+
+.img-3 {
+    top: 68px;
+    right: 13%;
+}
+
+.attraction-img>img {
+    width: 100%;
+    height: auto;
+
+}
+
+.att-table {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1070px;
+    padding: 50px 80px;
+    background-color: var(--color-table);
+    color: var(--color-text-item);
+}
+
+.att-table>div {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.att-table>p {
+    font-size: 48px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.att-table>h5 {
+    margin: 0 20px 0 0;
+
+}
+
+
+.att-table>.paragraph-p {
+    text-align: center;
+
+
+}
+
+@media screen and (max-width: 1700px) {
+    .att-table {
+        top: 53%;
+        padding: 40px 80px
+    }
+}
+
+@media screen and (max-width: 1620px) {
+    .img-1 {
+        top: 41px;
+        left: 15%;
+    }
+
+
+    .img-3 {
+        top: 62px;
+        right: 13%;
+    }
+}
+
+@media screen and (max-width: 1500px) {
+    .img-1 {
+        top: 35px;
+        left: 15%;
+    }
+
+    .img-3 {
+        top: 52px;
+        right: 13%;
+    }
+}
+
+
+@media screen and (max-width: 1400px) {
+    .att-table {
+        width: 945px;
+        padding: 40px 0px;
+    }
+
+    .att-table>h5 {
+        font-size: 20px !important;
+    }
+
+    .att-table>p {
+        font-size: 36px;
+
+    }
+}
+
+
+@media screen and (max-width: 1280px) {
+    .att-table {
+        position: absolute;
+        top: 60%;
+        padding: 30px 0;
+    }
+
+    .attraction-img>img {
+        height: 80%;
+    }
+
+    .img-1 {
+        top: 23px;
+        left: 15%;
+    }
+
+    .img-3 {
+        top: 38px;
+        right: 12%;
+    }
+}
+
+
+@media screen and (max-width: 1100px) {
+    .img-1 {
+        top: 13px;
+        left: 14%;
+    }
+
+    .img-3 {
+        top: 27px;
+        right: 10%;
+    }
+}
+
+
+@media screen and (max-width: 940px) {
+    .img-1 {
+        top: 9px;
+        left: 14%;
+    }
+
+    .img-2 {
+        top: -44px;
+        left: 48%;
+    }
+
+    .img-3 {
+        top: 21px;
+        right: 10%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .att-table {
+        width: 80%;
+        padding: 20px 10px;
+        top: 60%;
+    }
+
+    .att-table>p {
+        font-size: 30px;
+    }
+
+    .att-table>div {
+        font-size: 12px;
+
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .att-table {
+        padding: 10px;
+        top: 77%;
+    }
+
+    .attraction__content {
+        margin-top: 40px;
+    }
+
+    .attraction__content>div>p>span {
+        font-size: 30px;
+    }
+
+    .attraction-img>img {
+        margin-top: 65px;
+        height: 50%;
+    }
+
+    .attraction-img>span {
+        font-size: 22px;
+    }
+
+    .img-1 {
+        top: 59px;
+        left: 11%;
+    }
+
+    .img-2 {
+        top: 25px;
+        left: 48%;
+    }
+
+    .img-3 {
+        top: 69px;
+        right: 7%;
+    }
+
+    .att-table>h5 {
+        font-size: 16px !important;
+    }
+
+    .att-table>p {
+        font-size: 16px;
+    }
+
+    .att-table>div {
+        font-size: 9px;
+    }
+
+    .att-table>div br {
+        display: none;
+    }
+}
+
+@media screen and (max-width:550px) {
+    .attraction-img>img {
+        height: 200px;
+    }
+}
+
+@media screen and (max-width:425px) {
+    .attraction__content {
+        margin-top: 10px;
+    }
+
+    .paragraph-p {
+        font-size: 14px;
+    }
+
+    .attraction__content>div>p>span {
+        font-size: 26px;
+    }
+
+    .attraction-img>span {
+        font-size: 18px;
+    }
+
+    .img-1 {
+        top: 59px;
+        left: 11%;
+    }
+
+    .img-2 {
+        top: 29px;
+        left: 46%;
+    }
+
+    .img-3 {
+        top: 63px;
+        right: 6%;
+    }
+
+
+}
+
+@media screen and (max-width:400px) {
+    .att-table>p {
+        font-size: 12px;
+    }
+
+    .att-table>h5 {
+        font-size: 14px !important;
+    }
+
+    .att-table>div {
+        font-size: 7px;
+    }
+}
+
+@media screen and (max-width:374px) {
+    .att-table>h5 {
+        font-size: 12px !important;
+    }
+}

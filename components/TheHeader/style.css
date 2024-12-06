@@ -1,0 +1,171 @@
+.header {
+    color: var(--color-text-header);
+    margin: 0;
+    padding: 38px 0;
+}
+
+.nav-toggle {
+    display: none;
+}
+
+
+.header>div {
+    align-items: center;
+}
+
+.close-header {
+    display: none;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 16px;
+    height: 2px;
+    margin-bottom: 2px;
+    background-color: #5b9cf9;
+}
+
+.flex {
+    display: flex;
+    display: -ms-flexbox;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+}
+
+.flex .header-nav>a {
+    margin-right: 20px;
+}
+
+header .btn-yellow {
+    padding: 13.5px 28.5px;
+}
+
+.activePage {
+    border-bottom: 2px solid var(--color-text-header);
+}
+
+
+@media (max-width: 1620px) {
+    header .btn-yellow {
+        padding: 13.5px 17.5px;
+    }
+}
+
+
+
+@media (max-width: 1024px) {
+    .flex {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 901px) {
+    .flex .header-nav {
+        display: block;
+    }
+}
+
+
+@media (max-width: 1000px) {
+    .nav-toggle {
+        display: block;
+        cursor: pointer;
+    }
+
+    .header nav.flex {
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        background: white;
+        color: black;
+        text-align: center;
+        width: 100%;
+        padding: 28px 0 28px 11px;
+        z-index: 2;
+        font-size: 18px;
+        justify-content: start;
+    }
+
+    nav.flex a:not(:last-child):after {
+        content: "/";
+        /* display: inline-flex; */
+        position: relative;
+        right: 0;
+        top: 0;
+        padding-left: 5px;
+        padding-right: 11px;
+    }
+
+    .close-header {
+        display: block;
+        position: absolute;
+        right: 11px;
+        top: 11px;
+        z-index: 10;
+        color: grey;
+        font-size: 33px;
+        cursor: pointer;
+        padding: 10px;
+        font-weight: 600;
+    }
+
+    .activePage {
+        border-bottom: 1px solid var(--color-text-item);
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+    .header {
+        padding: 15px 0;
+    }
+
+    .header .btn-yellow {
+        padding: 6.4px 8.7px;
+        font-size: 9px;
+        margin-right: 10px;
+    }
+
+    .nav-toggle {
+        display: block;
+        -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+        order: 2;
+    }
+
+    .header nav.flex {
+        padding: 7px 0;
+        font-size: 15px;
+        gap: 0px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 20px;
+    }
+
+
+    nav.flex a:not(:last-child):after {
+        display: none;
+    }
+
+    nav a {
+        display: block;
+        margin: 0;
+        align-items: left;
+    }
+
+    .close-header {
+        right: 20px;
+        top: -4px;
+        font-size: 24px;
+    }
+}
+
+
+
+@media screen and (max-width: 355px) {
+    a.logo {
+        font-size: 16px;
+    }
+}

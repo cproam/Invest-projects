@@ -1,0 +1,125 @@
+.swiper {
+    width: 100%;
+
+}
+
+.swiper-wrapper {
+    position: relative;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 5 / 3;
+    object-fit: cover;
+}
+
+.item .slider {
+    width: 600px;
+    height: 360px;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    border-radius: 4px;
+    background-color: var(--color-body);
+    grid-column: 1 / 1;
+    grid-row: 1 / 4;
+}
+
+.item .slider .slider__wrap {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: calc(100% + 11px);
+    position: absolute;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-color: #4683e0 transparent;
+    scrollbar-width: thin;
+}
+
+.item .slider .slider__wrap img {
+    flex-shrink: 0;
+    flex-grow: 0;
+    scroll-snap-align: start;
+}
+
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-horizontal>.swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: var(--swiper-pagination-bottom, 10px) !important;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .item .slider {
+        margin-right: 10px;
+    }
+}
+
+
+.btn-wrapper {
+    position: absolute;
+    top: calc(50% - 24px);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 2;
+    padding: 0 20px 0 20px;
+    box-sizing: border-box;
+}
+
+.arrow {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+
+.btnSlider {
+    border-radius: 50%;
+    border: 2px solid rgb(255, 255, 255);
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    position: relative;
+}
+
+.btnSlider>img {
+    width: 25%;
+    height: auto;
+}
+
+.rotate {
+    transform: rotate(180deg)
+}
+
+@media screen and (max-width: 600px) {
+    .btnSlider {
+        width: 38px;
+        height: 38px;
+    }
+
+    .btn-wrapper {
+        top: calc(50% - 19px);
+    }
+}
+
+@media screen and (max-width:425px) {
+    .btn-wrapper {
+        width: 30px;
+        display: none;
+    }
+}

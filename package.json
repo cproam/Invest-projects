@@ -1,0 +1,28 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev  --turbo",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "next": "14.2.16",
+    "next-cors": "^1.0.0",
+    "next-navigation": "^1.0.6",
+    "query-string": "^9.1.1",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-intersection-observer": "^9.13.1",
+    "react-yandex-metrika": "^2.6.0",
+    "sharp": "^0.33.5",
+    "swiper": "^11.1.14"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "14.2.16"
+  }
+}

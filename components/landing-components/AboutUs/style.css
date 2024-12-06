@@ -1,0 +1,336 @@
+.aboutUs {
+    background-color: #e2f0f9;
+    color: var(--color-text-item);
+    max-width: 1920px;
+    margin: 0 auto;
+
+}
+
+.numbers-box__graph {
+    position: relative;
+}
+
+.numbers-box__graph>img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.numbers-box__graph>.line {
+    height: 73%;
+    width: 1px;
+    position: absolute;
+    bottom: 0;
+    left: 14.5%;
+    background-color: #111;
+}
+
+.numbers-box__graph>.line:nth-child(3) {
+    height: 56%;
+    left: 44%;
+}
+
+.numbers-box__graph>.line:nth-child(4) {
+    height: 100%;
+    left: 73%;
+}
+
+.numbers-box__graph>.line>.point>.details>.views {
+    margin-bottom: 47px;
+    background-image: url(../../../public/eye.png);
+    background-repeat: no-repeat;
+    background-position: center left;
+    padding-left: 65px;
+    font-size: 48px;
+    white-space: nowrap;
+    line-height: 0.7;
+}
+
+.numbers-box__graph>.line>.point>.details>.orders {
+    background-image: url(../../../public/mail.png);
+    background-repeat: no-repeat;
+    background-position: center left;
+    padding-left: 65px;
+    font-size: 48px;
+    white-space: nowrap;
+    line-height: 0.7;
+}
+
+.numbers-box__graph>.line>.point>.details>.views>span {
+    font-size: 28px;
+}
+
+.numbers-box__graph>.line>.point>.details>.orders>span {
+    font-size: 28px;
+}
+
+.numbers-box__graph>.line>.point {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #5291f8;
+    border: 8px solid #fff;
+    box-shadow: 0 1px 6px 0 rgb(0 0 0 / .25);
+    box-sizing: content-box;
+    position: absolute;
+    top: -12px;
+    left: -12px;
+}
+
+.numbers-box__graph>.line>.point>.details {
+    position: absolute;
+    left: 4px;
+    bottom: 16px;
+    border-left: 1px solid rgb(0 0 0 / .1);
+    padding-left: 10px;
+}
+
+
+.aboutUs__descr {
+    display: flex;
+    margin-top: 100px;
+    margin: 100px 0 207px 0;
+}
+
+.aboutUs__descr>div:first-child {
+    margin-right: 330px;
+}
+
+
+.count__rotate>p {
+    transform: rotate(-90deg);
+    font-size: 24px;
+    color: var(--color-accent);
+    line-height: 1.2;
+    text-align: left;
+    width: 160px;
+    position: absolute;
+    top: 38%;
+    right: -29px;
+}
+
+.block-w {
+    width: 485px;
+}
+
+.count__second>div>img {
+    margin: 30px 20px 0 0;
+}
+
+.count__second>div:first-child {
+    margin-bottom: 40px;
+}
+
+.block-style {
+    font-size: 24px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.block-style>span {
+    font-size: 48px;
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 1400px) {
+    .aboutUs__descr {
+        margin: 45px 0 207px 0;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .block-style {
+        font-size: 20px;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.views {
+        font-size: 30px;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.orders {
+        font-size: 30px;
+    }
+
+    .block-style>span {
+        font-size: 30px;
+    }
+
+}
+
+
+@media screen and (max-width: 1280px) {
+    .aboutUs__graph>img {
+        height: 80%;
+    }
+
+    .point {
+        bottom: 190px;
+    }
+
+    .aboutUs__descr {
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .aboutUs__descr>div:first-child {
+        margin-right: 10px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .aboutUs__count {
+        transform: scale(0.4);
+    }
+
+    .numbers-box__graph>.line>.point>.details>.views {
+        margin-bottom: 16px;
+        font-size: 23px;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.orders {
+        font-size: 23px;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.views>span {
+        font-size: 18px;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.orders>span {
+        font-size: 18px;
+    }
+
+    .aboutUs__descr {
+        transform: scale(0.8);
+        margin: 45px 0 120px;
+    }
+}
+
+
+
+@media screen and (max-width: 900px) {
+    .block-w {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .aboutUs__graph>img {
+        height: 50%;
+    }
+
+    .aboutUs__descr {
+        margin: 45px 0 90px;
+    }
+
+    .block-style {
+        font-size: 20px;
+    }
+
+    .block-style>span {
+        font-size: 30px;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.views {
+        font-size: 20px;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.orders {
+        font-size: 20px;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.views>span {
+        font-size: 18px;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.orders>span {
+        font-size: 18px;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.views {
+        background-image: none;
+        padding-left: 0;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.orders {
+        background-image: none;
+        padding-left: 0;
+    }
+
+
+}
+
+@media screen and (max-width: 600px) {
+    .aboutUs__descr {
+        justify-content: flex-start;
+        flex-direction: column;
+        margin: 30px 0 65px 0;
+    }
+
+    .block-w {
+        width: 100%;
+    }
+
+    .block-w>div:first-child {
+        margin-top: 10px;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.views {
+        font-size: 14px;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.orders {
+        font-size: 14px;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.views>span {
+        font-size: 14px;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.orders>span {
+        font-size: 14px;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.views {
+        line-height: 0.9;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.orders {
+        line-height: 0.9;
+    }
+
+
+}
+
+@media screen and (max-width: 425px) {
+    .block-style>span {
+        font-size: 26px;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.orders>span {
+        font-size: 14px;
+    }
+}
+
+
+
+@media screen and (max-width: 374px) {
+    .block-style>span {
+        font-size: 26px;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.views {
+        font-size: 13px;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.orders {
+        font-size: 13px;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.views>span {
+        font-size: 12px;
+    }
+
+    .numbers-box__graph>.line>.point>.details>.orders>span {
+        font-size: 12px;
+    }
+}

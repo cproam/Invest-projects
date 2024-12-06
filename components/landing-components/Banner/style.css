@@ -1,0 +1,79 @@
+.banner {
+    background: url(../../../public/communication.webp);
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+    height: 800px;
+}
+
+
+.banner__block>div>h1 {
+    margin: 0 !important;
+    text-align: left !important;
+    font-weight: bold !important;
+}
+
+.banner__block {
+    padding-top: 160px;
+}
+
+.banner__block>div>button {
+    margin-top: 90px;
+    font-size: 19px;
+}
+
+@media screen and (max-width: 1600px) {
+    .banner {
+        background-position: calc(100vw - 1790px);
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .banner {
+        background-position: calc(100vw - 1500px);
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .banner {
+        background-position: calc(100vw - 1400px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .banner {
+        background: url(../../../public/communication768.webp);
+        background-position: 0% 0%;
+        height: 500px;
+    }
+
+    .banner__block {
+        padding-top: 70px;
+    }
+
+}
+
+@media screen and (max-width: 580px) {
+    .banner {
+        background: url(../../../public/communication768.webp);
+        background-position: 0% 0%;
+        height: 400px;
+    }
+
+    .banner__block>div>button {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .banner {
+        height: 300px;
+    }
+
+    .banner__block {
+        padding-top: 30px;
+    }
+
+    .banner__block>div>button {
+        margin-top: 30px;
+    }
+}
