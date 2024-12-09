@@ -17,8 +17,6 @@ export default function Slider(props) {
 
   return (
     <Swiper
-      /*
-      watchOverflow={true}*/
       pagination={{
         dynamicBullets: false,
         clickable: true,
@@ -33,11 +31,10 @@ export default function Slider(props) {
       }}
     >
       {images.map((image) => (
-        <SwiperSlide key={image.id}>
-          {/*<img src={url} alt="слайдер" loading="lazy" />*/}
+        <SwiperSlide key={image.url}>
           <Image
             src={image.url}
-            alt={image.alt}
+            alt="слайдер"
             width={100}
             height={350}
             layout="responsive"

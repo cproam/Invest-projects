@@ -7,6 +7,7 @@ import "./index.css";
 import { gmt } from "@/lib/gmt";
 import { utmKeys } from "@/lib/umt";
 import { fetchIp } from "@/services/ip";
+import { sendForm } from "@/services/sendForm";
 
 export default function PresentationModal({ setOpen, type, projectId }) {
   const [active, setActive] = useState("phone");
@@ -117,6 +118,8 @@ export default function PresentationModal({ setOpen, type, projectId }) {
     });
     const json = JSON.stringify(formObject);
 
+    sendForm(json, "modal").then(setOpen(false));
+    /*
     try {
       const result = await fetch("/api/sendform", {
         method: "POST",
@@ -136,7 +139,7 @@ export default function PresentationModal({ setOpen, type, projectId }) {
       alert("Ошибка отправки формы");
     } finally {
       setOpen(false);
-    }
+    }*/
   }
 
   return (

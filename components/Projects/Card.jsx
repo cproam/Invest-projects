@@ -6,15 +6,13 @@ import PresentationModal from "./../Modals/PresentationModal";
 import { useInView } from "react-intersection-observer";
 import { useState } from "react";
 
-export default function Card({ p, pbArr }) {
+export default function Card({ p }) {
   const [open, setOpen] = useState(false);
 
   const { ref, inView } = useInView({
     threshold: 0.2,
     triggerOnce: 1,
   });
-
-  //console.log(p.images);
 
   return (
     <>

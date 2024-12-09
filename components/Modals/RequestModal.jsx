@@ -7,6 +7,7 @@ import "./index.css";
 import { gmt } from "@/lib/gmt";
 import { utmKeys } from "@/lib/umt";
 import { fetchIp } from "@/services/ip";
+import { sendForm } from "@/services/sendForm";
 
 export default function RequestModal({ setShowModal, type }) {
   const searchParams = useSearchParams();
@@ -95,6 +96,9 @@ export default function RequestModal({ setShowModal, type }) {
     });
     const json = JSON.stringify(formObject);
 
+    sendForm(json, "modal").then(setShowModal(false));
+
+    /*
     try {
       const result = await fetch("/api/sendform", {
         method: "POST",
@@ -115,7 +119,7 @@ export default function RequestModal({ setShowModal, type }) {
       alert("Ошибка отправки формы");
     } finally {
       setShowModal(false);
-    }
+    }*/
   }
 
   return (
