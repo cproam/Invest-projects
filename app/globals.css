@@ -100,7 +100,6 @@ button {
 
 .btn:disabled {
   cursor: not-allowed;
-  background: gray;
 }
 
 input {
