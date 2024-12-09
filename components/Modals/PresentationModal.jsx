@@ -130,17 +130,14 @@ export default function PresentationModal({ setOpen, type, projectId }) {
       body: json,
     });
 
-    if (result.status) {
+    if (result.status !== 200) {
+      console.log(result.status);
       setOpen(false);
-    }
-    if (result.status === 200) {
-      setButtonDisable(true);
-      const json = await result.json();
-      alert(json.data.message);
-    }
-    if (result.status != 200) {
-      const json = await result.json();
-      json.data.message;
+      alert("Ошибка отправки формы");
+    } else {
+      console.log(result.status);
+      setOpen(false);
+      alert("Форма отправлена");
     }
   }
 
@@ -291,7 +288,12 @@ export default function PresentationModal({ setOpen, type, projectId }) {
             />
           )}
           {active === "email" && (
-            <input type="email" name="email" placeholder="Введите e-mail" />
+            <input
+              type="email"
+              name="email"
+              placeholder="Введите e-mail"
+              required
+            />
           )}
 
           <button

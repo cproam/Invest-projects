@@ -15,5 +15,5 @@ export default async function handler(req, res) {
       })
   );
   let json = await response.json();
-  res.status(200).json({ message: "Ok", records: json });
+  res.status(200).json({ message: "Форма отправлена", records: json });
 }

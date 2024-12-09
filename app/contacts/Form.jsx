@@ -101,16 +101,10 @@ export default function Form() {
       body: json,
     });
 
-    if (result.status == 200) {
-      const json = await result.json();
-      alert(json.data.message);
-      if (json.data.message === "Форма отправлена") {
-        router.push("/thanks");
-      }
-    }
     if (result.status != 200) {
-      const json = await result.json();
-      alert(json.data.message);
+      alert("Ошибка отправки формы");
+    } else {
+      router.push("/thanks");
     }
   }
 

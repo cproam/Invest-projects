@@ -10,8 +10,6 @@ export default function Projects() {
 
   let cardArr = cards.records;
   let errorMessage = cards.error;
-  // console.log(cards);
-  console.log(cards);
 
   useEffect(() => {
     ProjectRender().then(setCards);
