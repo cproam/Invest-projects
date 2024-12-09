@@ -2,11 +2,12 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { DetectOS, GetBrowser, GetUserIp } from "@/services/getUserDevices";
+import { DetectOS, GetBrowser } from "@/services/getUserDevices";
 import { Telmask, pasteCallback } from "@/lib/telmask";
 import Link from "next/link";
 import "./style.css";
 import { utmKeys } from "@/lib/umt";
+import { fetchIp } from "@/services/ip";
 
 export default function Form() {
   const searchParams = useSearchParams();
@@ -42,14 +43,6 @@ export default function Form() {
   }
 
   useEffect(() => {
-    GetUserIp()
-      .then((response) => response.json())
-      .then((response) => {
-        setIp(response.ip);
-      });
-  }, []);
-
-  useEffect(() => {
     if (searchParams) {
       const params = Object.fromEntries(searchParams.entries());
       const filteredParams = utmKeys.reduce((acc, key) => {
@@ -61,7 +54,12 @@ export default function Form() {
     }
   }, [searchParams]);
 
+  useEffect(() => {
+    fetchIp().then(setIp);
+  }, []);
+
   async function Record(event) {
+    setbuttonEnabled(false);
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     formData.append("utm_source", utmParams.utm_source);
@@ -92,19 +90,23 @@ export default function Form() {
     });
     const json = JSON.stringify(formObject);
 
-    const result = await fetch("/api/sendform", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: json,
-    });
-
-    if (result.status != 200) {
+    try {
+      const result = await fetch("/api/sendform", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: json,
+      });
+      if (result.ok) {
+        router.push("/thanks");
+      }
+      if (!result.ok) {
+        throw new Error(`Network response was not ok (${result.status})`);
+      }
+    } catch (error) {
       alert("Ошибка отправки формы");
-    } else {
-      router.push("/thanks");
     }
   }
 

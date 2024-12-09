@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Telmask, pasteCallback } from "@/lib/telmask";
-import { DetectOS, GetBrowser, GetUserIp } from "@/services/getUserDevices";
+import { DetectOS, GetBrowser } from "@/services/getUserDevices";
 import Link from "next/link";
 import "./index.css";
 import { gmt } from "@/lib/gmt";
 import { utmKeys } from "@/lib/umt";
+import { fetchIp } from "@/services/ip";
 
 export default function RequestModal({ setShowModal, type }) {
   const searchParams = useSearchParams();
-  const [ip, setIp] = useState();
+  const [ip, setIp] = useState("");
   const [utmParams, setUtmParams] = useState(null);
   const phoneInput = useRef(null);
   const [buttonEnabled, setbuttonEnabled] = useState(false);
@@ -40,14 +41,6 @@ export default function RequestModal({ setShowModal, type }) {
   }
 
   useEffect(() => {
-    GetUserIp()
-      .then((response) => response.json())
-      .then((response) => {
-        setIp(response.ip);
-      });
-  }, []);
-
-  useEffect(() => {
     function handleEscapeKey(event) {
       if (event.code === "Escape") {
         setShowModal(false);
@@ -70,7 +63,12 @@ export default function RequestModal({ setShowModal, type }) {
     }
   }, [searchParams]);
 
+  useEffect(() => {
+    fetchIp().then(setIp);
+  }, []);
+
   async function Record(event) {
+    setbuttonEnabled(false);
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     formData.append("utm_source", utmParams.utm_source);
@@ -91,30 +89,32 @@ export default function RequestModal({ setShowModal, type }) {
     formData.append("ip", ip);
     formData.set("phone", formData.get("phone").replace(/[- )+(]/g, ""));
     formData.append("gmt", gmt);
-
     let formObject = {};
     formData.forEach(function (value, key) {
       formObject[key] = value;
     });
     const json = JSON.stringify(formObject);
 
-    const result = await fetch("/api/sendform", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: json,
-    });
+    try {
+      const result = await fetch("/api/sendform", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: json,
+      });
 
-    if (result.status !== 200) {
-      console.log(result.status);
-      setShowModal(false);
+      if (result.ok) {
+        alert("Форма отправлена");
+      }
+      if (!result.ok) {
+        throw new Error(`Network response was not ok (${result.status})`);
+      }
+    } catch (error) {
       alert("Ошибка отправки формы");
-    } else {
-      console.log(result.status);
+    } finally {
       setShowModal(false);
-      alert("Форма отправлена");
     }
   }
 

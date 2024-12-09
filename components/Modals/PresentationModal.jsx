@@ -1,17 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Telmask, pasteCallback } from "@/lib/telmask";
-import { DetectOS, GetBrowser, GetUserIp } from "@/services/getUserDevices";
+import { DetectOS, GetBrowser } from "@/services/getUserDevices";
 import Link from "next/link";
 import "./index.css";
 import { gmt } from "@/lib/gmt";
 import { utmKeys } from "@/lib/umt";
+import { fetchIp } from "@/services/ip";
 
 export default function PresentationModal({ setOpen, type, projectId }) {
   const [active, setActive] = useState("phone");
   const [buttonDisabled, setButtonDisable] = useState(true);
   const sendButton = useRef(null);
-  const [ip, setIp] = useState();
+  const [ip, setIp] = useState("");
 
   const [placeholderText, setPlaceholderText] = useState(
     "Введите номер телефона"
@@ -60,16 +61,6 @@ export default function PresentationModal({ setOpen, type, projectId }) {
   }
 
   useEffect(() => {
-    GetUserIp()
-      .then((response) => response.json())
-      .then((response) => {
-        setIp(response.ip);
-      });
-  }, []);
-
-  useEffect(() => {
-    //let phoneEl = phoneInput.current;
-    // Telmask({ target: phoneEl });
     function HandleEscapeKey(event) {
       if (event.code === "Escape") {
         setOpen(false);
@@ -92,7 +83,12 @@ export default function PresentationModal({ setOpen, type, projectId }) {
     }
   }, [searchParams]);
 
+  useEffect(() => {
+    fetchIp().then(setIp);
+  }, []);
+
   async function Record(event) {
+    setButtonDisable(true);
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     formData.append("utm_source", utmParams.utm_source);
@@ -121,23 +117,25 @@ export default function PresentationModal({ setOpen, type, projectId }) {
     });
     const json = JSON.stringify(formObject);
 
-    const result = await fetch("/api/sendform", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: json,
-    });
-
-    if (result.status !== 200) {
-      console.log(result.status);
-      setOpen(false);
+    try {
+      const result = await fetch("/api/sendform", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: json,
+      });
+      if (result.ok) {
+        alert("Форма отправлена");
+      }
+      if (!result.ok) {
+        throw new Error(`Network response was not ok (${result.status})`);
+      }
+    } catch (error) {
       alert("Ошибка отправки формы");
-    } else {
-      console.log(result.status);
+    } finally {
       setOpen(false);
-      alert("Форма отправлена");
     }
   }
 
