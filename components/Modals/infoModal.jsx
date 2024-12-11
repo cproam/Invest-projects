@@ -13,11 +13,11 @@ export default function InfoModal({ setOpenInfo }) {
           </div>
           <div className="modal-info">
             <div className="modal-title" style={{ padding: "10px 10px 0 0" }}>
-              Вы можете отправить не более 5 заявок в день
+              Сегодня вы уже отправляли
+              <br /> заявку по этой франшизе!
             </div>
             <p style={{ fontSize: "20px" }}>
-              Возвращайтесь к нам завтра и получите презентации интересующих
-              франшиз.
+              Рассмотрите другие предложения нашего каталога франшиз.
             </p>
           </div>
 

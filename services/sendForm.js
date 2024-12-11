@@ -1,22 +1,21 @@
-export async function sendForm(json, type) {
-  try {
-    const result = await fetch("/api/sendform", {
+export function SendForm(json) {
+  return new Promise((resolve, reject) => {
+    fetch("/api/sendform", {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: json,
-    });
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Ошибка отправки формы");
+        }
 
-    if (result.ok && type != "form") {
-      alert("Форма отправлена");
-    }
-
-    if (!result.ok) {
-      throw new Error(`Network response was not ok (${result.status})`);
-    }
-  } catch (error) {
-    alert("Ошибка отправки формы");
-  }
+        return response.json();
+      })
+      .then((data) => resolve(data))
+      .catch((error) => reject(error));
+  });
 }

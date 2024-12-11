@@ -2,21 +2,46 @@
 
 import Link from "next/link";
 import "./style.css";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import RequestModal from "../Modals/RequestModal";
 import { usePathname } from "next/navigation";
+import Toast from "../Modals/Toast";
+import InfoModal from "../Modals/InfoModal";
 
 export default function TheHeader() {
   const pathname = usePathname();
   const nav = useRef();
   const navbtn = useRef();
   const [showModal, setShowModal] = useState(false);
+  const [toastOpen, setToastOpen] = useState(false);
+  const [typeToast, SetTypeToast] = useState();
+  const [infoOpen, setInfoOpen] = useState(false);
 
   const links = [
     { href: "/", title: "Каталог инвестпроектов" },
     { href: "/invest", title: "Размещение проектов в каталоге" },
     { href: "/contacts", title: "Контакты" },
   ];
+
+  useEffect(() => {
+    if (toastOpen) {
+      const timeoutId = setTimeout(() => {
+        setToastOpen(false);
+      }, 5000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [toastOpen]);
+
+  useEffect(() => {
+    if (infoOpen) {
+      const timeoutId = setTimeout(() => {
+        setInfoOpen(false);
+      }, 5000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [infoOpen]);
 
   const showMenuOpen = () => {
     nav.current.style.display = "flex";
@@ -69,8 +94,15 @@ export default function TheHeader() {
           setShowModal={setShowModal}
           showModal={showModal}
           type={"sendProject"}
+          setToastOpen={setToastOpen}
+          SetTypeToast={SetTypeToast}
+          setInfoOpen={setInfoOpen}
         />
       )}
+
+      {toastOpen && <Toast typeToast={typeToast} />}
+
+      {infoOpen && <InfoModal typeToast={typeToast} />}
     </header>
   );
 }

@@ -8,7 +8,7 @@ import Link from "next/link";
 import "./style.css";
 import { utmKeys } from "@/lib/umt";
 import { fetchIp } from "@/services/ip";
-import { sendForm } from "@/services/sendForm";
+import { SendForm } from "@/services/sendForm";
 
 export default function Form() {
   const searchParams = useSearchParams();
@@ -91,7 +91,7 @@ export default function Form() {
     });
     const json = JSON.stringify(formObject);
 
-    sendForm(json, "form").then(router.push("/thanks"));
+    SendForm(json, "form");
     /*
     try {
       const result = await fetch("/api/sendform", {

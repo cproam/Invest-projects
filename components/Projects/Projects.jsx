@@ -2,11 +2,9 @@
 import { ProjectRender } from "@/services/connect";
 import { useEffect, useState } from "react";
 import Card from "./Card";
-import InfoModal from "../Modals/infoModal";
 
 export default function Projects() {
   const [cards, setCards] = useState([]);
-  const [openInfo, setOpenInfo] = useState(false);
 
   let cardArr = cards.records;
   let errorMessage = cards.error;
@@ -49,8 +47,6 @@ export default function Projects() {
           )}
         </div>
       </div>
-
-      {openInfo && <InfoModal setOpenInfo={setOpenInfo} />}
     </div>
   );
 }

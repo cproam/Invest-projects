@@ -7,9 +7,15 @@ import "./index.css";
 import { gmt } from "@/lib/gmt";
 import { utmKeys } from "@/lib/umt";
 import { fetchIp } from "@/services/ip";
-import { sendForm } from "@/services/sendForm";
+import { SendForm } from "@/services/sendForm";
 
-export default function RequestModal({ setShowModal, type }) {
+export default function RequestModal({
+  setShowModal,
+  type,
+  SetTypeToast,
+  setToastOpen,
+  setInfoOpen,
+}) {
   const searchParams = useSearchParams();
   const [ip, setIp] = useState("");
   const [utmParams, setUtmParams] = useState(null);
@@ -68,6 +74,26 @@ export default function RequestModal({ setShowModal, type }) {
     fetchIp().then(setIp);
   }, []);
 
+  function ResultSendFormSuccess(data) {
+    let status = data.data.status;
+    console.log(data);
+    setShowModal(false);
+    if (status === 1) {
+      setToastOpen(true);
+      SetTypeToast("success");
+    } else if (status === 2) {
+      setInfoOpen(true);
+    } else {
+      console.error("неизвесный статус");
+    }
+  }
+
+  function ResultSendFormErr() {
+    setShowModal(false);
+    setToastOpen(true);
+    SetTypeToast("error");
+  }
+
   async function Record(event) {
     setbuttonEnabled(false);
     event.preventDefault();
@@ -96,8 +122,9 @@ export default function RequestModal({ setShowModal, type }) {
     });
     const json = JSON.stringify(formObject);
 
-    sendForm(json, "modal").then(setShowModal(false));
-
+    SendForm(json)
+      .then((data) => ResultSendFormSuccess(data))
+      .catch((error) => ResultSendFormErr(error));
     /*
     try {
       const result = await fetch("/api/sendform", {
@@ -110,15 +137,17 @@ export default function RequestModal({ setShowModal, type }) {
       });
 
       if (result.ok) {
-        alert("Форма отправлена");
+        setShowModal(false);
+        SetTypeToast("success");
       }
       if (!result.ok) {
         throw new Error(`Network response was not ok (${result.status})`);
       }
     } catch (error) {
-      alert("Ошибка отправки формы");
-    } finally {
       setShowModal(false);
+      SetTypeToast("error");
+    } finally {
+      setToastOpen(true);
     }*/
   }
 
