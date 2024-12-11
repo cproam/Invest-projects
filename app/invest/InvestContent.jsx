@@ -17,7 +17,7 @@ export default function InvestContent() {
     if (toastOpen) {
       const timeoutId = setTimeout(() => {
         setToastOpen(false);
-      }, 5000);
+      }, 5000000);
 
       return () => clearTimeout(timeoutId);
     }
@@ -27,7 +27,7 @@ export default function InvestContent() {
     if (infoOpen) {
       const timeoutId = setTimeout(() => {
         setInfoOpen(false);
-      }, 5000);
+      }, 5000000);
 
       return () => clearTimeout(timeoutId);
     }
@@ -65,8 +65,8 @@ export default function InvestContent() {
           setInfoOpen={setInfoOpen}
         />
       )}
-      {toastOpen && <Toast typeToast={typeToast} />}
-      {infoOpen && <InfoModal />}
+      {toastOpen && <Toast typeToast={typeToast} setToastOpen={setToastOpen} />}
+      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} />}
     </>
   );
 }

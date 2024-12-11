@@ -216,9 +216,9 @@ export default function Form() {
         </div>
       </form>
 
-      {toastOpen && <Toast typeToast={typeToast} />}
+      {toastOpen && <Toast typeToast={typeToast} setToastOpen={setToastOpen} />}
 
-      {infoOpen && <InfoModal />}
+      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} />}
     </>
   );
 }

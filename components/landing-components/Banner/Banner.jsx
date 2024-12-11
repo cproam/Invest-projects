@@ -60,8 +60,8 @@ export default function Banner() {
         />
       )}
 
-      {toastOpen && <Toast typeToast={typeToast} />}
-      {infoOpen && <InfoModal />}
+      {toastOpen && <Toast typeToast={typeToast} setToastOpen={setToastOpen} />}
+      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} />}
     </section>
   );
 }

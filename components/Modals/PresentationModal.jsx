@@ -95,26 +95,6 @@ export default function PresentationModal({
     fetchIp().then(setIp);
   }, []);
 
-  function ResultSendFormSuccess(data) {
-    let status = data.data.status;
-    console.log(data);
-    setOpen(false);
-    if (status === 1) {
-      setToastOpen(true);
-      SetTypeToast("success");
-    } else if (status === 2) {
-      setInfoOpen(true);
-    } else {
-      console.error("неизвесный статус");
-    }
-  }
-
-  function ResultSendFormErr() {
-    setOpen(false);
-    setToastOpen(true);
-    SetTypeToast("error");
-  }
-
   async function Record(event) {
     setButtonDisable(true);
     event.preventDefault();
@@ -199,7 +179,7 @@ export default function PresentationModal({
   return (
     <div id="get-present" className="modal_form">
       <div className="top-form popup">
-        <div className="close" onClick={() => setOpen(false)}>
+        <div className="close" onClick={() => setShowModal(false)}>
           &times;
         </div>
         <form

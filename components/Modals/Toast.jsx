@@ -1,4 +1,4 @@
-export default function Toast({ typeToast }) {
+export default function Toast({ typeToast, setToastOpen }) {
   const wrap = {
     maxWidth: "512px",
     width: "98%",
@@ -66,7 +66,6 @@ export default function Toast({ typeToast }) {
     marginBottom: 0,
     width: "80px",
     height: "80px",
-
     borderRadius: "50%",
     position: "relative",
   };
@@ -91,24 +90,32 @@ export default function Toast({ typeToast }) {
     transform: "rotate(45deg)",
   };
 
-  const acceptError = {
-    border: "4px solid red",
-    borderWidth: "0 5px 5px 0",
-  };
   const acceptSuccess = {
     border: "4px solid #4683e0",
     borderWidth: "0 5px 5px 0",
   };
 
+  const crossErr = {
+    fontSize: "50px",
+    color: "red",
+    position: "absolute",
+    marginLleft: "auto",
+    marginRight: "auto",
+    left: 0,
+    right: 0,
+    textAlign: "center",
+  };
+
   const combineErrorRing = { ...img, ...imgError };
   const combineRingSuccess = { ...img, ...imgSuccess };
   const combineSuccessAccept = { ...accept, ...acceptSuccess };
-  const combineErrorAccept = { ...accept, ...acceptError };
 
   return (
     <div style={wrap}>
       <div style={form}>
-        <div style={close}>x</div>
+        <div style={close} onClick={() => setToastOpen(false)}>
+          x
+        </div>
         {typeToast !== "error" && (
           <div style={combineRingSuccess}>
             <div style={img}>
@@ -119,8 +126,8 @@ export default function Toast({ typeToast }) {
 
         {typeToast === "error" && (
           <div style={combineErrorRing}>
-            <div style={img}>
-              <div style={combineErrorAccept}></div>
+            <div>
+              <div style={crossErr}>&#10006;</div>
             </div>
           </div>
         )}

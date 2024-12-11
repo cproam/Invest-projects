@@ -7,6 +7,7 @@ import ForWhom from "@/components/landing-components/ForWhom/ForWhom";
 import Industries from "@/components/landing-components/Industries/Industries";
 import Why from "@/components/landing-components/Why/Why";
 import Banner from "@/components/landing-components/Banner/Banner";
+import ScrollToTopButton from "@/components/ScrollUp";
 
 export const metadata = {
   title: "Размещение проектов в каталоге",
@@ -26,6 +27,7 @@ export default function Invest() {
       <Industries />
       <Why />
       <Banner />
+      <ScrollToTopButton />
     </>
   );
 }

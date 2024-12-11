@@ -71,8 +71,10 @@ export default function Industries() {
             setInfoOpen={setInfoOpen}
           />
         )}
-        {toastOpen && <Toast typeToast={typeToast} />}
-        {infoOpen && <InfoModal />}
+        {toastOpen && (
+          <Toast typeToast={typeToast} setToastOpen={setToastOpen} />
+        )}
+        {infoOpen && <InfoModal setInfoOpen={setInfoOpen} />}
       </div>
     </section>
   );

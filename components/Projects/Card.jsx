@@ -87,8 +87,8 @@ export default function Card({ p }) {
         )}
       </article>
 
-      {toastOpen && <Toast typeToast={typeToast} />}
-      {infoOpen && <InfoModal />}
+      {toastOpen && <Toast typeToast={typeToast} setToastOpen={setToastOpen} />}
+      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} />}
       {showModal && (
         <PresentationModal
           setShowModal={setShowModal}
