@@ -17,7 +17,7 @@ export default function InvestContent() {
     if (toastOpen) {
       const timeoutId = setTimeout(() => {
         setToastOpen(false);
-      }, 5000000);
+      }, 5000);
 
       return () => clearTimeout(timeoutId);
     }
@@ -27,7 +27,7 @@ export default function InvestContent() {
     if (infoOpen) {
       const timeoutId = setTimeout(() => {
         setInfoOpen(false);
-      }, 5000000);
+      }, 5000);
 
       return () => clearTimeout(timeoutId);
     }
