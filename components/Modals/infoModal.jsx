@@ -1,11 +1,9 @@
-"use client";
-
 import "./index.css";
 
 export default function InfoModal({ setInfoOpen }) {
   return (
     <>
-      <div id="add-franch" className="modal_form">
+      <div className="modal_form">
         <div className="top-form popup">
           <div className="close" onClick={() => setInfoOpen(false)}>
             &times;
