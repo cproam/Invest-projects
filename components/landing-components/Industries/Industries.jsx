@@ -14,26 +14,6 @@ export default function Industries() {
   const [infoOpen, setInfoOpen] = useState(false);
   const [typeToast, SetTypeToast] = useState();
 
-  useEffect(() => {
-    if (toastOpen) {
-      const timeoutId = setTimeout(() => {
-        setToastOpen(false);
-      }, 5000);
-
-      return () => clearTimeout(timeoutId);
-    }
-  }, [toastOpen]);
-
-  useEffect(() => {
-    if (infoOpen) {
-      const timeoutId = setTimeout(() => {
-        setInfoOpen(false);
-      }, 5000);
-
-      return () => clearTimeout(timeoutId);
-    }
-  }, [infoOpen]);
-
   return (
     <section className="industries paddingblock" style={{ color: "white" }}>
       <div className="wrap">
@@ -72,9 +52,15 @@ export default function Industries() {
           />
         )}
         {toastOpen && (
-          <Toast typeToast={typeToast} setToastOpen={setToastOpen} />
+          <Toast
+            typeToast={typeToast}
+            setToastOpen={setToastOpen}
+            toastOpen={toastOpen}
+          />
         )}
-        {infoOpen && <InfoModal setInfoOpen={setInfoOpen} />}
+        {infoOpen && (
+          <InfoModal setInfoOpen={setInfoOpen} infoOpen={infoOpen} />
+        )}
       </div>
     </section>
   );

@@ -12,26 +12,6 @@ export default function Banner() {
   const [infoOpen, setInfoOpen] = useState(false);
   const [typeToast, SetTypeToast] = useState();
 
-  useEffect(() => {
-    if (toastOpen) {
-      const timeoutId = setTimeout(() => {
-        setToastOpen(false);
-      }, 5000);
-
-      return () => clearTimeout(timeoutId);
-    }
-  }, [toastOpen]);
-
-  useEffect(() => {
-    if (infoOpen) {
-      const timeoutId = setTimeout(() => {
-        setInfoOpen(false);
-      }, 5000);
-
-      return () => clearTimeout(timeoutId);
-    }
-  }, [infoOpen]);
-
   return (
     <section className="banner" style={{ color: "white" }}>
       <div className="banner__block">
@@ -60,8 +40,14 @@ export default function Banner() {
         />
       )}
 
-      {toastOpen && <Toast typeToast={typeToast} setToastOpen={setToastOpen} />}
-      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} />}
+      {toastOpen && (
+        <Toast
+          typeToast={typeToast}
+          setToastOpen={setToastOpen}
+          toastOpen={toastOpen}
+        />
+      )}
+      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} infoOpen={infoOpen} />}
     </section>
   );
 }

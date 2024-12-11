@@ -66,7 +66,6 @@ export default function Form() {
   function ResultSendFormSuccess(data) {
     let status = data.data.status;
     if (status === 1) {
-      setToastOpen(true);
       SetTypeToast("success");
       window.location.href = "/thanks";
     } else if (status === 2) {
@@ -80,16 +79,6 @@ export default function Form() {
     setToastOpen(true);
     SetTypeToast("error");
   }
-
-  useEffect(() => {
-    if (toastOpen) {
-      const timeoutId = setTimeout(() => {
-        setToastOpen(false);
-      }, 5000);
-
-      return () => clearTimeout(timeoutId);
-    }
-  }, [toastOpen]);
 
   useEffect(() => {
     if (infoOpen) {
@@ -136,25 +125,6 @@ export default function Form() {
     SendForm(json)
       .then((data) => ResultSendFormSuccess(data))
       .catch((error) => ResultSendFormErr(error));
-    /*
-    try {
-      const result = await fetch("/api/sendform", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: json,
-      });
-      if (result.ok) {
-        router.push("/thanks");
-      }
-      if (!result.ok) {
-        throw new Error(`Network response was not ok (${result.status})`);
-      }
-    } catch (error) {
-      alert("Ошибка отправки формы");
-    }*/
   }
 
   return (
@@ -216,9 +186,15 @@ export default function Form() {
         </div>
       </form>
 
-      {toastOpen && <Toast typeToast={typeToast} setToastOpen={setToastOpen} />}
+      {toastOpen && (
+        <Toast
+          typeToast={typeToast}
+          setToastOpen={setToastOpen}
+          toastOpen={toastOpen}
+        />
+      )}
 
-      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} />}
+      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} infoOpen={infoOpen} />}
     </>
   );
 }

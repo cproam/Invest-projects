@@ -13,26 +13,6 @@ export default function InvestContent() {
   const [infoOpen, setInfoOpen] = useState(false);
   const [typeToast, SetTypeToast] = useState();
 
-  useEffect(() => {
-    if (toastOpen) {
-      const timeoutId = setTimeout(() => {
-        setToastOpen(false);
-      }, 5000);
-
-      return () => clearTimeout(timeoutId);
-    }
-  }, [toastOpen]);
-
-  useEffect(() => {
-    if (infoOpen) {
-      const timeoutId = setTimeout(() => {
-        setInfoOpen(false);
-      }, 5000);
-
-      return () => clearTimeout(timeoutId);
-    }
-  }, [infoOpen]);
-
   return (
     <>
       <section id="main" className="bg-invest">
@@ -65,8 +45,14 @@ export default function InvestContent() {
           setInfoOpen={setInfoOpen}
         />
       )}
-      {toastOpen && <Toast typeToast={typeToast} setToastOpen={setToastOpen} />}
-      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} />}
+      {toastOpen && (
+        <Toast
+          typeToast={typeToast}
+          setToastOpen={setToastOpen}
+          toastOpen={toastOpen}
+        />
+      )}
+      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} infoOpen={infoOpen} />}
     </>
   );
 }

@@ -1,4 +1,6 @@
-export default function Toast({ typeToast, setToastOpen }) {
+import { useEffect } from "react";
+
+export default function Toast({ typeToast, setToastOpen, toastOpen }) {
   const wrap = {
     maxWidth: "512px",
     width: "98%",
@@ -99,6 +101,7 @@ export default function Toast({ typeToast, setToastOpen }) {
     fontSize: "50px",
     color: "red",
     position: "absolute",
+    fontWeight: 300,
     marginLleft: "auto",
     marginRight: "auto",
     left: 0,
@@ -109,6 +112,16 @@ export default function Toast({ typeToast, setToastOpen }) {
   const combineErrorRing = { ...img, ...imgError };
   const combineRingSuccess = { ...img, ...imgSuccess };
   const combineSuccessAccept = { ...accept, ...acceptSuccess };
+
+  useEffect(() => {
+    if (toastOpen) {
+      const timeoutId = setTimeout(() => {
+        setToastOpen(false);
+      }, 5000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [toastOpen]);
 
   return (
     <div style={wrap}>

@@ -19,26 +19,6 @@ export default function Card({ p }) {
     triggerOnce: 1,
   });
 
-  useEffect(() => {
-    if (toastOpen) {
-      const timeoutId = setTimeout(() => {
-        setToastOpen(false);
-      }, 5000);
-
-      return () => clearTimeout(timeoutId);
-    }
-  }, [toastOpen]);
-
-  useEffect(() => {
-    if (infoOpen) {
-      const timeoutId = setTimeout(() => {
-        setInfoOpen(false);
-      }, 5000);
-
-      return () => clearTimeout(timeoutId);
-    }
-  }, [infoOpen]);
-
   return (
     <>
       <article className={styles.item} ref={ref}>
@@ -87,8 +67,14 @@ export default function Card({ p }) {
         )}
       </article>
 
-      {toastOpen && <Toast typeToast={typeToast} setToastOpen={setToastOpen} />}
-      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} />}
+      {toastOpen && (
+        <Toast
+          typeToast={typeToast}
+          setToastOpen={setToastOpen}
+          toastOpen={toastOpen}
+        />
+      )}
+      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} infoOpen={infoOpen} />}
       {showModal && (
         <PresentationModal
           setShowModal={setShowModal}

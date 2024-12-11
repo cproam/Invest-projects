@@ -1,6 +1,17 @@
+import { useEffect } from "react";
 import "./index.css";
 
-export default function InfoModal({ setInfoOpen }) {
+export default function InfoModal({ setInfoOpen, infoOpen }) {
+  useEffect(() => {
+    if (infoOpen) {
+      const timeoutId = setTimeout(() => {
+        setInfoOpen(false);
+      }, 5000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [infoOpen]);
+
   return (
     <>
       <div className="modal_form">
@@ -24,3 +35,5 @@ export default function InfoModal({ setInfoOpen }) {
     </>
   );
 }
+
+/*  Сегодня вы уже отправляли заявку по проекту! вы можете отпралять не более одной заявки в 48 часов*/

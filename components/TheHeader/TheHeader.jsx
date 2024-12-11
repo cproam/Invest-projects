@@ -17,33 +17,11 @@ export default function TheHeader() {
   const [infoOpen, setInfoOpen] = useState(false);
   const [typeToast, SetTypeToast] = useState();
 
-  //console.log(infoOpen);
-
   const links = [
     { href: "/", title: "Каталог инвестпроектов" },
     { href: "/invest", title: "Размещение проектов в каталоге" },
     { href: "/contacts", title: "Контакты" },
   ];
-
-  useEffect(() => {
-    if (toastOpen) {
-      const timeoutId = setTimeout(() => {
-        setToastOpen(false);
-      }, 5000);
-
-      return () => clearTimeout(timeoutId);
-    }
-  }, [toastOpen]);
-
-  useEffect(() => {
-    if (infoOpen) {
-      const timeoutId = setTimeout(() => {
-        setInfoOpen(false);
-      }, 5000);
-
-      return () => clearTimeout(timeoutId);
-    }
-  }, [infoOpen]);
 
   const showMenuOpen = () => {
     nav.current.style.display = "flex";
@@ -102,9 +80,15 @@ export default function TheHeader() {
         />
       )}
 
-      {toastOpen && <Toast typeToast={typeToast} setToastOpen={setToastOpen} />}
+      {toastOpen && (
+        <Toast
+          typeToast={typeToast}
+          setToastOpen={setToastOpen}
+          toastOpen={toastOpen}
+        />
+      )}
 
-      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} />}
+      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} infoOpen={infoOpen} />}
     </header>
   );
 }
