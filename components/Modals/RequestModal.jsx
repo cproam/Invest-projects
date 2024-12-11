@@ -76,7 +76,6 @@ export default function RequestModal({
 
   function ResultSendFormSuccess(data) {
     let status = data.data.status;
-    console.log(data);
     setShowModal(false);
     if (status === 1) {
       setToastOpen(true);

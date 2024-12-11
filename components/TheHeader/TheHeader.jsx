@@ -14,8 +14,10 @@ export default function TheHeader() {
   const navbtn = useRef();
   const [showModal, setShowModal] = useState(false);
   const [toastOpen, setToastOpen] = useState(false);
-  const [typeToast, SetTypeToast] = useState();
   const [infoOpen, setInfoOpen] = useState(false);
+  const [typeToast, SetTypeToast] = useState();
+
+  //console.log(infoOpen);
 
   const links = [
     { href: "/", title: "Каталог инвестпроектов" },
@@ -102,7 +104,7 @@ export default function TheHeader() {
 
       {toastOpen && <Toast typeToast={typeToast} />}
 
-      {infoOpen && <InfoModal typeToast={typeToast} />}
+      {infoOpen && <InfoModal />}
     </header>
   );
 }

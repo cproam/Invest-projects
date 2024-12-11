@@ -1,12 +1,37 @@
 "use client";
 import "./style.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import TheHeader from "@/components/TheHeader/TheHeader";
 import RequestModal from "@/components/Modals/RequestModal";
+import InfoModal from "@/components/Modals/InfoModal";
+import Toast from "@/components/Modals/Toast";
 
 export default function InvestContent() {
   const [showModal, setShowModal] = useState(false);
+  const [toastOpen, setToastOpen] = useState(false);
+  const [infoOpen, setInfoOpen] = useState(false);
+  const [typeToast, SetTypeToast] = useState();
+
+  useEffect(() => {
+    if (toastOpen) {
+      const timeoutId = setTimeout(() => {
+        setToastOpen(false);
+      }, 5000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [toastOpen]);
+
+  useEffect(() => {
+    if (infoOpen) {
+      const timeoutId = setTimeout(() => {
+        setInfoOpen(false);
+      }, 5000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [infoOpen]);
 
   return (
     <>
@@ -35,8 +60,13 @@ export default function InvestContent() {
           setShowModal={setShowModal}
           showModal={showModal}
           type={"sendPresentation"}
+          setToastOpen={setToastOpen}
+          SetTypeToast={SetTypeToast}
+          setInfoOpen={setInfoOpen}
         />
       )}
+      {toastOpen && <Toast typeToast={typeToast} />}
+      {infoOpen && <InfoModal />}
     </>
   );
 }

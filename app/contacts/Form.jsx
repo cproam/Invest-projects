@@ -1,22 +1,26 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { DetectOS, GetBrowser } from "@/services/getUserDevices";
 import { Telmask, pasteCallback } from "@/lib/telmask";
 import Link from "next/link";
-import "./style.css";
 import { utmKeys } from "@/lib/umt";
 import { fetchIp } from "@/services/ip";
 import { SendForm } from "@/services/sendForm";
+import "./style.css";
+import Toast from "@/components/Modals/Toast";
+import InfoModal from "@/components/Modals/InfoModal";
 
 export default function Form() {
   const searchParams = useSearchParams();
-  const router = useRouter();
   const [ip, setIp] = useState();
   const [utmParams, setUtmParams] = useState(null);
   const phoneInput = useRef(null);
   const [buttonEnabled, setbuttonEnabled] = useState(false);
+
+  const [toastOpen, setToastOpen] = useState(false);
+  const [infoOpen, setInfoOpen] = useState(false);
+  const [typeToast, SetTypeToast] = useState();
 
   const ToggleBtn = (value) => {
     if (value.length === 16) {
@@ -59,6 +63,44 @@ export default function Form() {
     fetchIp().then(setIp);
   }, []);
 
+  function ResultSendFormSuccess(data) {
+    let status = data.data.status;
+    if (status === 1) {
+      setToastOpen(true);
+      SetTypeToast("success");
+      window.location.href = "/thanks";
+    } else if (status === 2) {
+      setInfoOpen(true);
+    } else {
+      console.error("неизвесный статус");
+    }
+  }
+
+  function ResultSendFormErr() {
+    setToastOpen(true);
+    SetTypeToast("error");
+  }
+
+  useEffect(() => {
+    if (toastOpen) {
+      const timeoutId = setTimeout(() => {
+        setToastOpen(false);
+      }, 5000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [toastOpen]);
+
+  useEffect(() => {
+    if (infoOpen) {
+      const timeoutId = setTimeout(() => {
+        setInfoOpen(false);
+      }, 5000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [infoOpen]);
+
   async function Record(event) {
     setbuttonEnabled(false);
     event.preventDefault();
@@ -91,7 +133,9 @@ export default function Form() {
     });
     const json = JSON.stringify(formObject);
 
-    SendForm(json, "form");
+    SendForm(json)
+      .then((data) => ResultSendFormSuccess(data))
+      .catch((error) => ResultSendFormErr(error));
     /*
     try {
       const result = await fetch("/api/sendform", {
@@ -114,61 +158,67 @@ export default function Form() {
   }
 
   return (
-    <form
-      action=""
-      method="post"
-      className="form-box flex-wrap"
-      onSubmit={Record}
-    >
-      <div className="title">У вас есть вопрос? Напишите его нам </div>
-      <div className="input-wr">
-        <div className="input-box">
-          <input
-            type="text"
-            name="fullname"
-            autoComplete="off"
-            placeholder="Как к вам обращаться"
-            required
-            minLength="2"
-            maxLength="25"
-            className="suggestions-input"
-            style={{ boxSizing: "border-box" }}
-          />
-          <div className="suggestions-wrapper">
-            <div
-              className="suggestions-suggestions"
-              style={{ display: "none" }}
-            ></div>
+    <>
+      <form
+        action=""
+        method="post"
+        className="form-box flex-wrap"
+        onSubmit={Record}
+      >
+        <div className="title">У вас есть вопрос? Напишите его нам </div>
+        <div className="input-wr">
+          <div className="input-box">
+            <input
+              type="text"
+              name="fullname"
+              autoComplete="off"
+              placeholder="Как к вам обращаться"
+              required
+              minLength="2"
+              maxLength="25"
+              className="suggestions-input"
+              style={{ boxSizing: "border-box" }}
+            />
+            <div className="suggestions-wrapper">
+              <div
+                className="suggestions-suggestions"
+                style={{ display: "none" }}
+              ></div>
+            </div>
           </div>
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Номер телефона"
+            ref={phoneInput}
+            onChange={checkPhoneInput}
+            onPaste={checkPhonePaste}
+            onFocus={checkFocus}
+            required
+          />
+          <input type="email" name="email" placeholder="Ваш e-mail" required />
         </div>
-        <input
-          type="tel"
-          name="phone"
-          placeholder="Номер телефона"
-          ref={phoneInput}
-          onChange={checkPhoneInput}
-          onPaste={checkPhonePaste}
-          onFocus={checkFocus}
+        <textarea
+          name="message"
+          placeholder="Напишите свой вопрос..."
           required
-        />
-        <input type="email" name="email" placeholder="Ваш e-mail" required />
-      </div>
-      <textarea
-        name="message"
-        placeholder="Напишите свой вопрос..."
-        required
-      ></textarea>
+        ></textarea>
 
-      <button className="btn-yellow btn btn-form" disabled={!buttonEnabled}>
-        Отправить сообщение
-      </button>
-      <div className="polit-descr contacts-btn">
-        Нажимая кнопку &quot;Отправить сообщение&quot;, я подтверждаю, что
-        ознакомлен и согласен с условиями &nbsp;
-        <Link href="/policy" target="_blank" className="polit">
-          политики обработки персональных данных
-        </Link>
-      </div>
-    </form>
+        <button className="btn-yellow btn btn-form" disabled={!buttonEnabled}>
+          Отправить сообщение
+        </button>
+        <div className="polit-descr contacts-btn">
+          Нажимая кнопку &quot;Отправить сообщение&quot;, я подтверждаю, что
+          ознакомлен и согласен с условиями &nbsp;
+          <Link href="/policy" target="_blank" className="polit">
+            политики обработки персональных данных
+          </Link>
+        </div>
+      </form>
+
+      {toastOpen && <Toast typeToast={typeToast} />}
+
+      {infoOpen && <InfoModal />}
+    </>
   );
 }

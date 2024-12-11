@@ -9,7 +9,14 @@ import { utmKeys } from "@/lib/umt";
 import { fetchIp } from "@/services/ip";
 import { SendForm } from "@/services/sendForm";
 
-export default function PresentationModal({ setOpen, type, projectId, error }) {
+export default function PresentationModal({
+  setShowModal,
+  type,
+  projectId,
+  SetTypeToast,
+  setToastOpen,
+  setInfoOpen,
+}) {
   const [active, setActive] = useState("phone");
   const [buttonDisabled, setButtonDisable] = useState(true);
   const sendButton = useRef(null);
@@ -88,6 +95,26 @@ export default function PresentationModal({ setOpen, type, projectId, error }) {
     fetchIp().then(setIp);
   }, []);
 
+  function ResultSendFormSuccess(data) {
+    let status = data.data.status;
+    console.log(data);
+    setOpen(false);
+    if (status === 1) {
+      setToastOpen(true);
+      SetTypeToast("success");
+    } else if (status === 2) {
+      setInfoOpen(true);
+    } else {
+      console.error("неизвесный статус");
+    }
+  }
+
+  function ResultSendFormErr() {
+    setOpen(false);
+    setToastOpen(true);
+    SetTypeToast("error");
+  }
+
   async function Record(event) {
     setButtonDisable(true);
     event.preventDefault();
@@ -118,8 +145,34 @@ export default function PresentationModal({ setOpen, type, projectId, error }) {
     });
     const json = JSON.stringify(formObject);
 
-    SendForm(json, "modal").then(setOpen(false));
+    function ResultSendFormSuccess(data) {
+      let status = data.data.status;
+      console.log(status);
+      setShowModal(false);
+      if (status === 1) {
+        setToastOpen(true);
+        SetTypeToast("success");
+      } else if (status === 2) {
+        setInfoOpen(true);
+      } else {
+        console.error("неизвесный статус");
+      }
+    }
 
+    function ResultSendFormErr() {
+      setShowModal(false);
+      setToastOpen(true);
+      SetTypeToast("error");
+    }
+
+    SendForm(json)
+      .then((data) => ResultSendFormSuccess(data))
+      .catch((error) => ResultSendFormErr(error));
+    /*
+    SendForm(json)
+      .then((data) => ResultSendFormSuccess(data))
+      .catch((error) => ResultSendFormErr(error));
+*/
     /*
     try {
       const result = await fetch("/api/sendform", {

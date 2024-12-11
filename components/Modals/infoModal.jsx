@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import "./index.css";
 
-export default function InfoModal({ setOpenInfo }) {
+export default function InfoModal() {
   return (
     <>
       <div id="add-franch" className="modal_form">

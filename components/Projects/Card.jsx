@@ -4,15 +4,40 @@ import styles from "./page.module.css";
 import Slider from "../Slider/Slider";
 import PresentationModal from "./../Modals/PresentationModal";
 import { useInView } from "react-intersection-observer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import InfoModal from "../Modals/InfoModal";
+import Toast from "../Modals/Toast";
 
 export default function Card({ p }) {
-  const [open, setOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [toastOpen, setToastOpen] = useState(false);
+  const [typeToast, SetTypeToast] = useState();
+  const [infoOpen, setInfoOpen] = useState(false);
 
   const { ref, inView } = useInView({
     threshold: 0.2,
     triggerOnce: 1,
   });
+
+  useEffect(() => {
+    if (toastOpen) {
+      const timeoutId = setTimeout(() => {
+        setToastOpen(false);
+      }, 5000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [toastOpen]);
+
+  useEffect(() => {
+    if (infoOpen) {
+      const timeoutId = setTimeout(() => {
+        setInfoOpen(false);
+      }, 5000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [infoOpen]);
 
   return (
     <>
@@ -50,7 +75,7 @@ export default function Card({ p }) {
               <div className={styles.button}>
                 <button
                   className="btn btn-yellow"
-                  onClick={() => setOpen(true)}
+                  onClick={() => setShowModal(true)}
                 >
                   Получить презентацию
                 </button>
@@ -62,11 +87,16 @@ export default function Card({ p }) {
         )}
       </article>
 
-      {open && (
+      {toastOpen && <Toast typeToast={typeToast} />}
+      {infoOpen && <InfoModal />}
+      {showModal && (
         <PresentationModal
-          setOpen={setOpen}
+          setShowModal={setShowModal}
           type={"presentation"}
           projectId={p.id}
+          SetTypeToast={SetTypeToast}
+          setToastOpen={setToastOpen}
+          setInfoOpen={setInfoOpen}
         />
       )}
     </>
