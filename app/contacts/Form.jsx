@@ -1,15 +1,16 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { DetectOS, GetBrowser } from "@/services/getUserDevices";
 import { Telmask, pasteCallback } from "@/lib/telmask";
-import Link from "next/link";
 import { utmKeys } from "@/lib/umt";
 import { fetchIp } from "@/services/ip";
 import { SendForm } from "@/services/sendForm";
-import "./style.css";
 import Toast from "@/components/Modals/Toast";
 import InfoModal from "@/components/Modals/InfoModal";
+import "./style.css";
 
 export default function Form() {
   const searchParams = useSearchParams();
@@ -17,6 +18,7 @@ export default function Form() {
   const [utmParams, setUtmParams] = useState(null);
   const phoneInput = useRef(null);
   const [buttonEnabled, setbuttonEnabled] = useState(false);
+  const router = useRouter();
 
   const [toastOpen, setToastOpen] = useState(false);
   const [infoOpen, setInfoOpen] = useState(false);
@@ -67,7 +69,7 @@ export default function Form() {
     let status = data.data.status;
     if (status === 1) {
       SetTypeToast("success");
-      window.location.href = "/thanks";
+      router.push("/thanks");
     } else if (status === 2) {
       setInfoOpen(true);
     } else {
@@ -111,11 +113,7 @@ export default function Form() {
     formData.append("browser", GetBrowser());
     formData.append("ip", ip);
     formData.set("phone", formData.get("phone").replace(/[- )(]/g, ""));
-    /*
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ": " + pair[1]);
-    }
-*/
+
     let formObject = {};
     formData.forEach(function (value, key) {
       formObject[key] = value;

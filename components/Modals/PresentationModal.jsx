@@ -127,7 +127,6 @@ export default function PresentationModal({
 
     function ResultSendFormSuccess(data) {
       let status = data.data.status;
-      console.log(status);
       setShowModal(false);
       if (status === 1) {
         setToastOpen(true);

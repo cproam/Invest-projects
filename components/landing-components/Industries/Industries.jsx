@@ -3,7 +3,7 @@ import "./style.css";
 import "../style.css";
 import { industriesArr } from "@/lib/industriesArr";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import RequestModal from "@/components/Modals/RequestModal";
 import Toast from "@/components/Modals/Toast";
 import InfoModal from "@/components/Modals/InfoModal";

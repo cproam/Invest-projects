@@ -1,12 +1,12 @@
 "use client";
-
 import Link from "next/link";
-import "./style.css";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import RequestModal from "../Modals/RequestModal";
 import { usePathname } from "next/navigation";
 import Toast from "../Modals/Toast";
 import InfoModal from "../Modals/InfoModal";
+import { GetUTMParams } from "@/lib/GetUTMParams";
+import "./style.css";
 
 export default function TheHeader() {
   const pathname = usePathname();
@@ -35,6 +35,7 @@ export default function TheHeader() {
 
   return (
     <header className="header">
+      <GetUTMParams />
       <div className="wrap flex">
         <div className="nav-toggle" onClick={showMenuOpen}>
           <span></span>
