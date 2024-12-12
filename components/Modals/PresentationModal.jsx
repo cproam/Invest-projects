@@ -147,32 +147,6 @@ export default function PresentationModal({
     SendForm(json)
       .then((data) => ResultSendFormSuccess(data))
       .catch((error) => ResultSendFormErr(error));
-    /*
-    SendForm(json)
-      .then((data) => ResultSendFormSuccess(data))
-      .catch((error) => ResultSendFormErr(error));
-*/
-    /*
-    try {
-      const result = await fetch("/api/sendform", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: json,
-      });
-      if (result.ok) {
-        alert("Форма отправлена");
-      }
-      if (!result.ok) {
-        throw new Error(`Network response was not ok (${result.status})`);
-      }
-    } catch (error) {
-      alert("Ошибка отправки формы");
-    } finally {
-      setOpen(false);
-    }*/
   }
 
   return (
@@ -313,6 +287,8 @@ export default function PresentationModal({
             <input
               type="tel"
               name="phone"
+              pattern="\+7\s\([0-68-9]{1}[0-9]{2}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}"
+              required
               placeholder={placeholderText}
               ref={phoneInput}
               data-phone-pattern
@@ -326,6 +302,7 @@ export default function PresentationModal({
               type="email"
               name="email"
               placeholder="Введите e-mail"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
               required
             />
           )}
@@ -334,7 +311,6 @@ export default function PresentationModal({
             ref={sendButton}
             className="btn submit btn-yellow big-btn"
             style={{ width: "100%", textAlign: "center" }}
-            disabled={buttonDisabled}
           >
             Получить презентацию
           </button>

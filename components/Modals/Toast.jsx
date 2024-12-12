@@ -129,7 +129,7 @@ export default function Toast({ typeToast, setToastOpen, toastOpen }) {
         <div style={close} onClick={() => setToastOpen(false)}>
           x
         </div>
-        {typeToast !== "error" && (
+        {typeToast === "success" && (
           <div style={combineRingSuccess}>
             <div style={img}>
               <div style={combineSuccessAccept}></div>

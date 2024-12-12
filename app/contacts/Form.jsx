@@ -158,13 +158,20 @@ export default function Form() {
             type="tel"
             name="phone"
             placeholder="Номер телефона"
+            pattern="\+7\s\([0-68-9]{1}[0-9]{2}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}"
+            required
             ref={phoneInput}
             onChange={checkPhoneInput}
             onPaste={checkPhonePaste}
             onFocus={checkFocus}
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Ваш e-mail"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             required
           />
-          <input type="email" name="email" placeholder="Ваш e-mail" required />
         </div>
         <textarea
           name="message"
@@ -172,9 +179,7 @@ export default function Form() {
           required
         ></textarea>
 
-        <button className="btn-yellow btn btn-form" disabled={!buttonEnabled}>
-          Отправить сообщение
-        </button>
+        <button className="btn-yellow btn btn-form">Отправить сообщение</button>
         <div className="polit-descr contacts-btn">
           Нажимая кнопку &quot;Отправить сообщение&quot;, я подтверждаю, что
           ознакомлен и согласен с условиями &nbsp;

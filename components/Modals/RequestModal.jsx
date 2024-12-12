@@ -20,26 +20,14 @@ export default function RequestModal({
   const [ip, setIp] = useState("");
   const [utmParams, setUtmParams] = useState(null);
   const phoneInput = useRef(null);
-  const [buttonEnabled, setbuttonEnabled] = useState(false);
-
-  const ToggleBtn = (value) => {
-    if (value.length === 16) {
-      setbuttonEnabled(true);
-    } else {
-      setbuttonEnabled(false);
-    }
-  };
 
   const checkPhoneInput = (event) => {
     let { value } = event.target;
     value = Telmask(event);
-    ToggleBtn(value);
   };
 
   const checkPhonePaste = (event) => {
-    const { value } = event.target;
     pasteCallback(event);
-    ToggleBtn(value);
   };
 
   function checkFocus() {
@@ -94,7 +82,6 @@ export default function RequestModal({
   }
 
   async function Record(event) {
-    setbuttonEnabled(false);
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     formData.append("utm_source", utmParams.utm_source);
@@ -124,30 +111,6 @@ export default function RequestModal({
     SendForm(json)
       .then((data) => ResultSendFormSuccess(data))
       .catch((error) => ResultSendFormErr(error));
-    /*
-    try {
-      const result = await fetch("/api/sendform", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: json,
-      });
-
-      if (result.ok) {
-        setShowModal(false);
-        SetTypeToast("success");
-      }
-      if (!result.ok) {
-        throw new Error(`Network response was not ok (${result.status})`);
-      }
-    } catch (error) {
-      setShowModal(false);
-      SetTypeToast("error");
-    } finally {
-      setToastOpen(true);
-    }*/
   }
 
   return (
@@ -192,15 +155,14 @@ export default function RequestModal({
                 ref={phoneInput}
                 name="phone"
                 placeholder="Введите номер телефона"
+                pattern="\+7\s\([0-68-9]{1}[0-9]{2}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}"
+                required
                 onChange={checkPhoneInput}
                 onPaste={checkPhonePaste}
                 onFocus={checkFocus}
               />
             </div>
-            <button
-              className="btn submit btn-yellow big-btn"
-              disabled={!buttonEnabled}
-            >
+            <button className="btn submit btn-yellow big-btn">
               Разместить проект
             </button>
             <div className="polit-descr">
