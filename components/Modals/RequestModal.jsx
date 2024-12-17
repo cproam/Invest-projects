@@ -175,13 +175,25 @@ export default function RequestModal({
               </button>
             )}
 
-            <div className="polit-descr">
-              Нажимая кнопку&nbsp;&quot;Разместить проект&quot;, я подтверждаю,
-              что ознакомлен и согласен с условиями &nbsp;
-              <Link href="/policy" target="_blank" className="polit">
-                политики обработки персональных данных
-              </Link>
-            </div>
+            {type === "sendPresentation" && (
+              <div className="polit-descr">
+                Нажимая кнопку&nbsp;&quot;Получить презентацию&quot;, я
+                подтверждаю, что ознакомлен и согласен с условиями &nbsp;
+                <Link href="/policy" target="_blank" className="polit">
+                  политики обработки персональных данных
+                </Link>
+              </div>
+            )}
+
+            {type === "sendProject" && (
+              <div className="polit-descr">
+                Нажимая кнопку&nbsp;&quot;Разместить проект&quot;, я
+                подтверждаю, что ознакомлен и согласен с условиями &nbsp;
+                <Link href="/policy" target="_blank" className="polit">
+                  политики обработки персональных данных
+                </Link>
+              </div>
+            )}
           </form>
         </div>
         <div className="overlay"></div>
