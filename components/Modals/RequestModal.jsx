@@ -162,9 +162,19 @@ export default function RequestModal({
                 onFocus={checkFocus}
               />
             </div>
-            <button className="btn submit btn-yellow big-btn">
-              Разместить проект
-            </button>
+
+            {type === "sendPresentation" && (
+              <button className="btn submit btn-yellow big-btn">
+                Получить презентацию
+              </button>
+            )}
+
+            {type === "sendProject" && (
+              <button className="btn submit btn-yellow big-btn">
+                Разместить проект
+              </button>
+            )}
+
             <div className="polit-descr">
               Нажимая кнопку&nbsp;&quot;Разместить проект&quot;, я подтверждаю,
               что ознакомлен и согласен с условиями &nbsp;
