@@ -9,7 +9,7 @@ import { utmKeys } from "@/lib/umt";
 import { fetchIp } from "@/services/ip";
 import { SendForm } from "@/services/sendForm";
 import Toast from "@/components/Modals/Toast";
-import InfoModal from "@/components/Modals/InfoModal";
+//import InfoModal from "@/components/Modals/InfoModal";
 import "./style.css";
 
 export default function Form() {
@@ -196,8 +196,8 @@ export default function Form() {
           toastOpen={toastOpen}
         />
       )}
-
-      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} infoOpen={infoOpen} />}
+      {/*
+      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} infoOpen={infoOpen} />}*/}
     </>
   );
 }

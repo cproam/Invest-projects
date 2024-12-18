@@ -1,10 +1,10 @@
 "use client";
 import "./style.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import TheHeader from "@/components/TheHeader/TheHeader";
 import RequestModal from "@/components/Modals/RequestModal";
-import InfoModal from "@/components/Modals/InfoModal";
+//import InfoModal from "@/components/Modals/InfoModal";
 import Toast from "@/components/Modals/Toast";
 
 export default function InvestContent() {
@@ -52,7 +52,8 @@ export default function InvestContent() {
           toastOpen={toastOpen}
         />
       )}
-      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} infoOpen={infoOpen} />}
+      {/*
+      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} infoOpen={infoOpen} />}*/}
     </>
   );
 }

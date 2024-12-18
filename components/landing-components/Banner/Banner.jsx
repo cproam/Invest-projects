@@ -1,10 +1,10 @@
 "use client";
 import "./style.css";
 import "../style.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import RequestModal from "@/components/Modals/RequestModal";
 import Toast from "@/components/Modals/Toast";
-import InfoModal from "@/components/Modals/InfoModal";
+//import InfoModal from "@/components/Modals/InfoModal";
 
 export default function Banner() {
   const [showModal, setShowModal] = useState(false);
@@ -47,7 +47,8 @@ export default function Banner() {
           toastOpen={toastOpen}
         />
       )}
-      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} infoOpen={infoOpen} />}
+      {/*
+      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} infoOpen={infoOpen} />}*/}
     </section>
   );
 }
