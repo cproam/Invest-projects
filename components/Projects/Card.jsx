@@ -4,8 +4,8 @@ import styles from "./page.module.css";
 import Slider from "../Slider/Slider";
 import PresentationModal from "./../Modals/PresentationModal";
 import { useInView } from "react-intersection-observer";
-import { useEffect, useState } from "react";
-import InfoModal from "../Modals/InfoModal";
+import { useState } from "react";
+//import InfoModal from "../Modals/InfoModal";
 import Toast from "../Modals/Toast";
 
 export default function Card({ p }) {
@@ -74,7 +74,8 @@ export default function Card({ p }) {
           toastOpen={toastOpen}
         />
       )}
-      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} infoOpen={infoOpen} />}
+      {/*
+      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} infoOpen={infoOpen} />}*/}
       {showModal && (
         <PresentationModal
           setShowModal={setShowModal}

@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import RequestModal from "../Modals/RequestModal";
 import { usePathname } from "next/navigation";
 import Toast from "../Modals/Toast";
-import InfoModal from "../Modals/InfoModal";
+//import InfoModal from "../Modals/InfoModal";
 import { GetUTMParams } from "@/lib/GetUTMParams";
 import "./style.css";
 
@@ -88,8 +88,8 @@ export default function TheHeader() {
           toastOpen={toastOpen}
         />
       )}
-
-      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} infoOpen={infoOpen} />}
+      {/*
+      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} infoOpen={infoOpen} />}*/}
     </header>
   );
 }
