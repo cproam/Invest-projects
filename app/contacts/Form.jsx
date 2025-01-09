@@ -10,9 +10,13 @@ import { fetchIp } from "@/services/ip";
 import { SendForm } from "@/services/sendForm";
 import Toast from "@/components/Modals/Toast";
 //import InfoModal from "@/components/Modals/InfoModal";
+import useStore from "../../store";
 import "./style.css";
 
 export default function Form() {
+  const { utmData } = useStore();
+  console.log(utmData);
+
   const searchParams = useSearchParams();
   const [ip, setIp] = useState();
   const [utmParams, setUtmParams] = useState(null);

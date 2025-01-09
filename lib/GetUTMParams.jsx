@@ -3,14 +3,16 @@ import { DetectOS, GetBrowser } from "@/services/getUserDevices";
 import { useEffect, useState } from "react";
 import { fetchIp } from "@/services/ip";
 import { gmt } from "./gmt";
+import useStore from "@/store";
 
 export function GetUTMParams() {
   const [ip, setIp] = useState("");
+  const { setUtmData } = useStore();
 
   useEffect(() => {
     fetchIp().then(setIp);
   }, []);
-
+  /*
   const addUtmParams = (url) => {
     const urlParams = new URLSearchParams(window.location.search);
     const params = new URLSearchParams({
@@ -38,7 +40,7 @@ export function GetUTMParams() {
     }
     return `${url}&${params.toString()}`;
   };
-
+  /*
   const handleClick = (e) => {
     e.preventDefault();
     const link = e.target.href;
@@ -56,6 +58,26 @@ export function GetUTMParams() {
         link.removeEventListener("click", handleClick);
       });
     };
+  }, []);
+*/
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search);
+
+      const utmSource = urlParams.get("utm_source");
+      const utmMedium = urlParams.get("utm_medium");
+      const utmCampaign = urlParams.get("utm_campaign");
+      const utmContent = urlParams.get("utm_content");
+      const utmTerm = urlParams.get("utm_term");
+      setUtmData({
+        utmSource,
+        utmMedium,
+        utmCampaign,
+        utmContent,
+        utmTerm,
+      });
+    }
   }, []);
 
   return null;

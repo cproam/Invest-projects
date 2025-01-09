@@ -8,6 +8,7 @@ import { gmt } from "@/lib/gmt";
 import { utmKeys } from "@/lib/umt";
 import { fetchIp } from "@/services/ip";
 import { SendForm } from "@/services/sendForm";
+import useStore from "../../store";
 
 export default function RequestModal({
   setShowModal,
@@ -17,9 +18,13 @@ export default function RequestModal({
   setInfoOpen,
 }) {
   const searchParams = useSearchParams();
+
   const [ip, setIp] = useState("");
   const [utmParams, setUtmParams] = useState(null);
   const phoneInput = useRef(null);
+
+  const { utmData } = useStore();
+  console.log(utmData);
 
   const checkPhoneInput = (event) => {
     let { value } = event.target;

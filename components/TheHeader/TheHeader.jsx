@@ -35,7 +35,7 @@ export default function TheHeader() {
 
   return (
     <header className="header">
-      <GetUTMParams />
+      {/* <GetUTMParams />*/}
       <div className="wrap flex">
         <div className="nav-toggle" onClick={showMenuOpen}>
           <span></span>

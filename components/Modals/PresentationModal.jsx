@@ -8,6 +8,7 @@ import { gmt } from "@/lib/gmt";
 import { utmKeys } from "@/lib/umt";
 import { fetchIp } from "@/services/ip";
 import { SendForm } from "@/services/sendForm";
+import useStore from "../../store";
 
 export default function PresentationModal({
   setShowModal,
@@ -21,6 +22,9 @@ export default function PresentationModal({
   const [buttonDisabled, setButtonDisable] = useState(true);
   const sendButton = useRef(null);
   const [ip, setIp] = useState("");
+
+  const { utmData } = useStore();
+  console.log(utmData);
 
   const [placeholderText, setPlaceholderText] = useState(
     "Введите номер телефона"

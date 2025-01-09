@@ -14,6 +14,7 @@ export default function Home() {
   return (
     <>
       <Head></Head>
+
       <section id="main" className="main">
         <TheHeader />
         <div id="hero">

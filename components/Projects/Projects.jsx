@@ -2,6 +2,7 @@
 import { ProjectRender } from "@/services/connect";
 import { useEffect, useState } from "react";
 import Card from "./Card";
+import useStore from "@/store";
 
 export default function Projects() {
   const [cards, setCards] = useState([]);
