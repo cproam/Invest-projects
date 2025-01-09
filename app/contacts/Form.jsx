@@ -2,10 +2,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
 import { DetectOS, GetBrowser } from "@/services/getUserDevices";
 import { Telmask, pasteCallback } from "@/lib/telmask";
-import { utmKeys } from "@/lib/umt";
 import { fetchIp } from "@/services/ip";
 import { SendForm } from "@/services/sendForm";
 import Toast from "@/components/Modals/Toast";
@@ -15,14 +13,10 @@ import "./style.css";
 
 export default function Form() {
   const { utmData } = useStore();
-  console.log(utmData);
-
-  const searchParams = useSearchParams();
+  const router = useRouter();
   const [ip, setIp] = useState();
-  const [utmParams, setUtmParams] = useState(null);
   const phoneInput = useRef(null);
   const [buttonEnabled, setbuttonEnabled] = useState(false);
-  const router = useRouter();
 
   const [toastOpen, setToastOpen] = useState(false);
   const [infoOpen, setInfoOpen] = useState(false);
@@ -52,18 +46,6 @@ export default function Form() {
     let phoneEl = phoneInput.current;
     Telmask({ target: phoneEl });
   }
-
-  useEffect(() => {
-    if (searchParams) {
-      const params = Object.fromEntries(searchParams.entries());
-      const filteredParams = utmKeys.reduce((acc, key) => {
-        if (params[key]) acc[key] = params[key];
-        return acc;
-      }, {});
-
-      setUtmParams(filteredParams);
-    }
-  }, [searchParams]);
 
   useEffect(() => {
     fetchIp().then(setIp);
@@ -100,19 +82,19 @@ export default function Form() {
     setbuttonEnabled(false);
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    formData.append("utm_source", utmParams.utm_source);
-    formData.append("utm_source_type", utmParams.utm_source_type);
-    formData.append("utm_medium", utmParams.utm_medium);
-    formData.append("utm_campaign", utmParams.utm_campaign);
-    formData.append("utm_campaign_name", utmParams.utm_campaign_name);
-    formData.append("utm_content", utmParams.utm_content);
-    formData.append("utm_region_name", utmParams.utm_region_name);
-    formData.append("utm_term", utmParams.utm_term);
-    formData.append("utm_placement", utmParams.utm_placement);
-    formData.append("utm_position", utmParams.utm_position);
-    formData.append("utm_position_type", utmParams.utm_position_type);
-    formData.append("utm_device", utmParams.utm_device);
-    formData.append("yclid", utmParams.yclid);
+    formData.append("utm_source", utmData.utmSource);
+    formData.append("utm_source_type", utmData.utmSourceType);
+    formData.append("utm_medium", utmData.utmMedium);
+    formData.append("utm_campaign", utmData.utmCampaign);
+    formData.append("utm_campaign_name", utmData.utmCampaignName);
+    formData.append("utm_content", utmData.utmContent);
+    formData.append("utm_region_name", utmData.utmRegionName);
+    formData.append("utm_term", utmData.utmTerm);
+    formData.append("utm_placement", utmData.utmPlacement);
+    formData.append("utm_position", utmData.utmPosition);
+    formData.append("utm_position_type", utmData.utmPositionType);
+    formData.append("utm_device", utmData.utmDevice);
+    formData.append("yclid", utmData.yclid);
     formData.append("platform", DetectOS());
     formData.append("browser", GetBrowser());
     formData.append("ip", ip);
