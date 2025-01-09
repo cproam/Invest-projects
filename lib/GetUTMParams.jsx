@@ -77,7 +77,7 @@ export function GetUTMParams() {
       const utmTerm = urlParams.get("utm_term");
       const utmDevice = urlParams.get("utm_device");
       const yclid = urlParams.get("yclid");
-      setUtmData({
+      /*   setUtmData({
         utmSource,
         utmSourceType,
         utmMedium,
@@ -91,7 +91,25 @@ export function GetUTMParams() {
         utmTerm,
         utmDevice,
         yclid,
-      });
+      });*/
+      localStorage.setItem(
+        "utm",
+        JSON.stringify({
+          utmSource,
+          utmSourceType,
+          utmMedium,
+          utmCampaign,
+          utmCampaignName,
+          utmPlacement,
+          utmPosition,
+          utmPositionType,
+          utmContent,
+          utmRegionName,
+          utmTerm,
+          utmDevice,
+          yclid,
+        })
+      );
     }
   }, []);
 

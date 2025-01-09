@@ -8,11 +8,11 @@ import { fetchIp } from "@/services/ip";
 import { SendForm } from "@/services/sendForm";
 import Toast from "@/components/Modals/Toast";
 //import InfoModal from "@/components/Modals/InfoModal";
-import useStore from "../../store";
+//import useStore from "../../store";
 import "./style.css";
 
 export default function Form() {
-  const { utmData } = useStore();
+  //const { utmData } = useStore();
   const router = useRouter();
   const [ip, setIp] = useState();
   const phoneInput = useRef(null);
@@ -21,6 +21,8 @@ export default function Form() {
   const [toastOpen, setToastOpen] = useState(false);
   const [infoOpen, setInfoOpen] = useState(false);
   const [typeToast, SetTypeToast] = useState();
+
+  const utmFromLocaleStorage = JSON.parse(localStorage.getItem("utm"));
 
   const ToggleBtn = (value) => {
     if (value.length === 16) {
@@ -82,19 +84,19 @@ export default function Form() {
     setbuttonEnabled(false);
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    formData.append("utm_source", utmData.utmSource);
-    formData.append("utm_source_type", utmData.utmSourceType);
-    formData.append("utm_medium", utmData.utmMedium);
-    formData.append("utm_campaign", utmData.utmCampaign);
-    formData.append("utm_campaign_name", utmData.utmCampaignName);
-    formData.append("utm_content", utmData.utmContent);
-    formData.append("utm_region_name", utmData.utmRegionName);
-    formData.append("utm_term", utmData.utmTerm);
-    formData.append("utm_placement", utmData.utmPlacement);
-    formData.append("utm_position", utmData.utmPosition);
-    formData.append("utm_position_type", utmData.utmPositionType);
-    formData.append("utm_device", utmData.utmDevice);
-    formData.append("yclid", utmData.yclid);
+    formData.append("utm_source", utmFromLocaleStorage.utmSource);
+    formData.append("utm_source_type", utmFromLocaleStorage.utmSourceType);
+    formData.append("utm_medium", utmFromLocaleStorage.utmMedium);
+    formData.append("utm_campaign", utmFromLocaleStorage.utmCampaign);
+    formData.append("utm_campaign_name", utmFromLocaleStorage.utmCampaignName);
+    formData.append("utm_content", utmFromLocaleStorage.utmContent);
+    formData.append("utm_region_name", utmFromLocaleStorage.utmRegionName);
+    formData.append("utm_term", utmFromLocaleStorage.utmTerm);
+    formData.append("utm_placement", utmFromLocaleStorage.utmPlacement);
+    formData.append("utm_position", utmFromLocaleStorage.utmPosition);
+    formData.append("utm_position_type", utmFromLocaleStorage.utmPositionType);
+    formData.append("utm_device", utmFromLocaleStorage.utmDevice);
+    formData.append("yclid", utmFromLocaleStorage.yclid);
     formData.append("platform", DetectOS());
     formData.append("browser", GetBrowser());
     formData.append("ip", ip);
