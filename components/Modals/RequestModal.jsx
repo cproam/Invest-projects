@@ -6,7 +6,6 @@ import "./index.css";
 import { gmt } from "@/lib/gmt";
 import { fetchIp } from "@/services/ip";
 import { SendForm } from "@/services/sendForm";
-//import useStore from "../../store";
 
 export default function RequestModal({
   setShowModal,
@@ -15,7 +14,6 @@ export default function RequestModal({
   setToastOpen,
   setInfoOpen,
 }) {
-  //const { utmData } = useStore();
   const [ip, setIp] = useState("");
   const phoneInput = useRef(null);
   const [utmFromLocaleStorage, setUtmFromLocaleStorage] = useState(false);

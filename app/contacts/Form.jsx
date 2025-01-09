@@ -8,11 +8,10 @@ import { fetchIp } from "@/services/ip";
 import { SendForm } from "@/services/sendForm";
 import Toast from "@/components/Modals/Toast";
 //import InfoModal from "@/components/Modals/InfoModal";
-//import useStore from "../../store";
+
 import "./style.css";
 
 export default function Form() {
-  //const { utmData } = useStore();
   const router = useRouter();
   const [ip, setIp] = useState();
   const phoneInput = useRef(null);
@@ -21,8 +20,6 @@ export default function Form() {
   const [toastOpen, setToastOpen] = useState(false);
   const [infoOpen, setInfoOpen] = useState(false);
   const [typeToast, SetTypeToast] = useState();
-
-  //const utmFromLocaleStorage = JSON.parse(localStorage.getItem("utm"));
 
   useEffect(() => {
     let value;

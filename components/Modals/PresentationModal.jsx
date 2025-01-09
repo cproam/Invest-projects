@@ -6,7 +6,6 @@ import "./index.css";
 import { gmt } from "@/lib/gmt";
 import { fetchIp } from "@/services/ip";
 import { SendForm } from "@/services/sendForm";
-//import useStore from "../../store";
 
 export default function PresentationModal({
   setShowModal,
@@ -16,7 +15,6 @@ export default function PresentationModal({
   setToastOpen,
   setInfoOpen,
 }) {
-  //const { utmData } = useStore();
   const [active, setActive] = useState("phone");
   const [buttonDisabled, setButtonDisable] = useState(true);
   const [utmFromLocaleStorage, setUtmFromLocaleStorage] = useState(false);
