@@ -20,11 +20,11 @@ export default function RequestModal({
   const searchParams = useSearchParams();
 
   const [ip, setIp] = useState("");
-  const [utmParams, setUtmParams] = useState(null);
+  //const [utmParams, setUtmParams] = useState(null);
   const phoneInput = useRef(null);
 
   const { utmData } = useStore();
-  console.log(utmData);
+  console.log(utmData.utmSource);
 
   const checkPhoneInput = (event) => {
     let { value } = event.target;
@@ -50,7 +50,7 @@ export default function RequestModal({
     document.addEventListener("keydown", handleEscapeKey);
     return () => document.removeEventListener("keydown", handleEscapeKey);
   }, []);
-
+  /*
   useEffect(() => {
     if (searchParams) {
       const params = Object.fromEntries(searchParams.entries());
@@ -62,7 +62,7 @@ export default function RequestModal({
       setUtmParams(filteredParams);
     }
   }, [searchParams]);
-
+*/
   useEffect(() => {
     fetchIp().then(setIp);
   }, []);
@@ -89,6 +89,25 @@ export default function RequestModal({
   async function Record(event) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
+    formData.append("utm_source", utmData.utmSource);
+    formData.append("utm_source_type", utmData.utmSourceType);
+    formData.append("utm_medium", utmData.utmMedium);
+    formData.append("utm_campaign", utmData.utmCampaign);
+    formData.append("utm_campaign_name", utmData.utmCampaignName);
+    formData.append("utm_content", utmData.utmContent);
+    formData.append("utm_region_name", utmData.utmRegionName);
+    formData.append("utm_term", utmData.utmTerm);
+    formData.append("utm_placement", utmData.utmPlacement);
+    formData.append("utm_position", utmData.utmPosition);
+    formData.append("utm_position_type", utmData.utmPositionType);
+    formData.append("utm_device", utmData.utmDevice);
+    formData.append("yclid", utmData.yclid);
+    formData.append("platform", DetectOS());
+    formData.append("browser", GetBrowser());
+    formData.append("ip", ip);
+    formData.set("phone", formData.get("phone").replace(/[- )+(]/g, ""));
+    formData.append("gmt", gmt);
+    /*
     formData.append("utm_source", utmParams.utm_source);
     formData.append("utm_source_type", utmParams.utm_source_type);
     formData.append("utm_medium", utmParams.utm_medium);
@@ -107,6 +126,7 @@ export default function RequestModal({
     formData.append("ip", ip);
     formData.set("phone", formData.get("phone").replace(/[- )+(]/g, ""));
     formData.append("gmt", gmt);
+    */
     let formObject = {};
     formData.forEach(function (value, key) {
       formObject[key] = value;
