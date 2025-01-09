@@ -18,8 +18,13 @@ export default function RequestModal({
   //const { utmData } = useStore();
   const [ip, setIp] = useState("");
   const phoneInput = useRef(null);
+  const [utmFromLocaleStorage, setUtmFromLocaleStorage] = useState(false);
 
-  const utmFromLocaleStorage = JSON.parse(localStorage.getItem("utm"));
+  useEffect(() => {
+    let value;
+    value = JSON.parse(localStorage.getItem("utm")) || "";
+    setUtmFromLocaleStorage(value);
+  }, []);
 
   const checkPhoneInput = (event) => {
     let { value } = event.target;

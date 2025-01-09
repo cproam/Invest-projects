@@ -17,12 +17,18 @@ export default function Form() {
   const [ip, setIp] = useState();
   const phoneInput = useRef(null);
   const [buttonEnabled, setbuttonEnabled] = useState(false);
-
+  const [utmFromLocaleStorage, setUtmFromLocaleStorage] = useState(false);
   const [toastOpen, setToastOpen] = useState(false);
   const [infoOpen, setInfoOpen] = useState(false);
   const [typeToast, SetTypeToast] = useState();
 
-  const utmFromLocaleStorage = JSON.parse(localStorage.getItem("utm"));
+  //const utmFromLocaleStorage = JSON.parse(localStorage.getItem("utm"));
+
+  useEffect(() => {
+    let value;
+    value = JSON.parse(localStorage.getItem("utm")) || "";
+    setUtmFromLocaleStorage(value);
+  }, []);
 
   const ToggleBtn = (value) => {
     if (value.length === 16) {

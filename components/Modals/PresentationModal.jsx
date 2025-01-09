@@ -19,13 +19,19 @@ export default function PresentationModal({
   //const { utmData } = useStore();
   const [active, setActive] = useState("phone");
   const [buttonDisabled, setButtonDisable] = useState(true);
+  const [utmFromLocaleStorage, setUtmFromLocaleStorage] = useState(false);
   const sendButton = useRef(null);
   const [ip, setIp] = useState("");
   const [placeholderText, setPlaceholderText] = useState(
     "Введите номер телефона"
   );
   const phoneInput = useRef(null);
-  const utmFromLocaleStorage = JSON.parse(localStorage.getItem("utm"));
+
+  useEffect(() => {
+    let value;
+    value = JSON.parse(localStorage.getItem("utm")) || "";
+    setUtmFromLocaleStorage(value);
+  }, []);
 
   useEffect(() => {
     if (active === "phone") {
