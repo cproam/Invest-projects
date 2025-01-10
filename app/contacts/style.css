@@ -64,7 +64,8 @@ form.form-box input {
 
 .btn-form {
     font-size: 19px !important;
-    padding: 25px 33px;
+    padding: 25px 30px;
+    width: 270px;
 }
 
 textarea {
@@ -178,6 +179,7 @@ form.form-box.flex-wrap .input-box input {
 
     .btn-form {
         margin-bottom: 10px;
+        padding: 15px 30px;
     }
 
     .polit-descr {
@@ -299,15 +301,10 @@ form.form-box.flex-wrap .input-box input {
 }
 
 @media (max-width: 425px) {
-
     .btn-form {
         width: 100% !important;
         text-align: center;
-    }
-
-    .btn-form {
-        font-size: 16px;
-        padding: 25px 10px;
+        font-size: 16px !important;
     }
 }
 

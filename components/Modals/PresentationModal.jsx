@@ -6,6 +6,7 @@ import "./index.css";
 import { gmt } from "@/lib/gmt";
 import { fetchIp } from "@/services/ip";
 import { SendForm } from "@/services/sendForm";
+import Loader from "../Loader/Loader";
 
 export default function PresentationModal({
   setShowModal,
@@ -17,6 +18,7 @@ export default function PresentationModal({
 }) {
   const [active, setActive] = useState("phone");
   const [buttonDisabled, setButtonDisable] = useState(true);
+  const [Loading, setLoading] = useState(false);
   const [utmFromLocaleStorage, setUtmFromLocaleStorage] = useState(false);
   const sendButton = useRef(null);
   const [ip, setIp] = useState("");
@@ -114,15 +116,17 @@ export default function PresentationModal({
       formObject[key] = value;
     });
     const json = JSON.stringify(formObject);
-
+    setLoading(true);
     function ResultSendFormSuccess(data) {
       let status = data.data.status;
-      setShowModal(false);
+      setShowModal(true);
       if (status === 1) {
         setToastOpen(true);
+        setShowModal(false);
         SetTypeToast("success");
       } else if (status === 2) {
         setInfoOpen(true);
+        setShowModal(false);
       } else {
         console.error("неизвесный статус");
       }
@@ -302,7 +306,7 @@ export default function PresentationModal({
             className="btn submit btn-yellow big-btn"
             style={{ width: "100%", textAlign: "center" }}
           >
-            Получить презентацию
+            {Loading ? <Loader /> : <span>Получить презентацию</span>}
           </button>
 
           <div className="polit-descr">

@@ -52,8 +52,8 @@ export default function InvestContent() {
           toastOpen={toastOpen}
         />
       )}
-      {/*
-      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} infoOpen={infoOpen} />}*/}
+
+      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} infoOpen={infoOpen} />}
     </>
   );
 }

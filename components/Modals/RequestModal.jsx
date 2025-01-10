@@ -6,6 +6,7 @@ import "./index.css";
 import { gmt } from "@/lib/gmt";
 import { fetchIp } from "@/services/ip";
 import { SendForm } from "@/services/sendForm";
+import Loader from "../Loader/Loader";
 
 export default function RequestModal({
   setShowModal,
@@ -17,6 +18,7 @@ export default function RequestModal({
   const [ip, setIp] = useState("");
   const phoneInput = useRef(null);
   const [utmFromLocaleStorage, setUtmFromLocaleStorage] = useState(false);
+  const [Loading, setLoading] = useState(false);
 
   useEffect(() => {
     let value;
@@ -58,9 +60,11 @@ export default function RequestModal({
     setShowModal(false);
     if (status === 1) {
       setToastOpen(true);
+      setLoading(false);
       SetTypeToast("success");
     } else if (status === 2) {
       setInfoOpen(true);
+      setLoading(false);
     } else {
       console.error("неизвесный статус");
     }
@@ -98,7 +102,7 @@ export default function RequestModal({
       formObject[key] = value;
     });
     const json = JSON.stringify(formObject);
-
+    setLoading(true);
     SendForm(json)
       .then((data) => ResultSendFormSuccess(data))
       .catch((error) => ResultSendFormErr(error));
@@ -153,19 +157,19 @@ export default function RequestModal({
                 onFocus={checkFocus}
               />
             </div>
+            <div style={{ position: "relative" }}>
+              {type === "sendPresentation" && (
+                <button className="btn submit btn-yellow big-btn">
+                  {Loading ? <Loader /> : <span>Получить презентацию</span>}
+                </button>
+              )}
 
-            {type === "sendPresentation" && (
-              <button className="btn submit btn-yellow big-btn">
-                Получить презентацию
-              </button>
-            )}
-
-            {type === "sendProject" && (
-              <button className="btn submit btn-yellow big-btn">
-                Разместить проект
-              </button>
-            )}
-
+              {type === "sendProject" && (
+                <button className="btn submit btn-yellow big-btn">
+                  {Loading ? <Loader /> : <span>Разместить проект</span>}
+                </button>
+              )}
+            </div>
             {type === "sendPresentation" && (
               <div className="polit-descr">
                 Нажимая кнопку&nbsp;&quot;Получить презентацию&quot;, я

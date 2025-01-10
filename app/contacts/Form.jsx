@@ -10,11 +10,13 @@ import Toast from "@/components/Modals/Toast";
 //import InfoModal from "@/components/Modals/InfoModal";
 
 import "./style.css";
+import Loader from "@/components/Loader/Loader";
 
 export default function Form() {
   const router = useRouter();
   const [ip, setIp] = useState();
   const phoneInput = useRef(null);
+  const [Loading, setLoading] = useState(false);
   const [buttonEnabled, setbuttonEnabled] = useState(false);
   const [utmFromLocaleStorage, setUtmFromLocaleStorage] = useState(false);
   const [toastOpen, setToastOpen] = useState(false);
@@ -60,9 +62,11 @@ export default function Form() {
     let status = data.data.status;
     if (status === 1) {
       SetTypeToast("success");
+      setLoading(false);
       router.push("/thanks");
     } else if (status === 2) {
       setInfoOpen(true);
+      setLoading(false);
     } else {
       console.error("неизвесный статус");
     }
@@ -106,6 +110,7 @@ export default function Form() {
     formData.set("phone", formData.get("phone").replace(/[- )(]/g, ""));
 
     let formObject = {};
+    setLoading(true);
     formData.forEach(function (value, key) {
       formObject[key] = value;
     });
@@ -170,7 +175,9 @@ export default function Form() {
           required
         ></textarea>
 
-        <button className="btn-yellow btn btn-form">Отправить сообщение</button>
+        <button className="btn-yellow btn btn-form">
+          {Loading ? <Loader /> : <span> Отправить сообщение</span>}
+        </button>
         <div className="polit-descr contacts-btn">
           Нажимая кнопку &quot;Отправить сообщение&quot;, я подтверждаю, что
           ознакомлен и согласен с условиями &nbsp;

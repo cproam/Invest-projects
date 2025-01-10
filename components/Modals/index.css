@@ -212,7 +212,6 @@ form fieldset.options .field input[type=radio] {
 }
 
 
-
 @media (max-width: 767px) {
     .modal-form .polit-descr {
         white-space: normal;
@@ -264,6 +263,9 @@ form fieldset.options .field input[type=radio] {
         top: -2px;
         font-size: 24px;
     }
+
+
+
 }
 
 @media screen and (max-width: 500px) {
