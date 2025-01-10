@@ -4,7 +4,6 @@ import { useState } from "react";
 
 import TheHeader from "@/components/TheHeader/TheHeader";
 import RequestModal from "@/components/Modals/RequestModal";
-//import InfoModal from "@/components/Modals/InfoModal";
 import Toast from "@/components/Modals/Toast";
 import InfoModal from "@/components/Modals/infoModal";
 
