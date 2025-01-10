@@ -117,9 +117,15 @@ export default function Form({
     });
     const json = JSON.stringify(formObject);
 
-    SendForm(json)
-      .then((data) => ResultSendFormSuccess(data))
-      .catch((error) => ResultSendFormErr(error));
+    SendForm(json, event)
+      .then((data) => {
+        ResultSendFormSuccess(data);
+        event.target.reset();
+      })
+      .catch((error, event) => {
+        event.target.reset();
+        ResultSendFormErr(error);
+      });
   }
 
   return (
