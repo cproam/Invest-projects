@@ -6,22 +6,21 @@ import { DetectOS, GetBrowser } from "@/services/getUserDevices";
 import { Telmask, pasteCallback } from "@/lib/telmask";
 import { fetchIp } from "@/services/ip";
 import { SendForm } from "@/services/sendForm";
-import Toast from "@/components/Modals/Toast";
-//import InfoModal from "@/components/Modals/InfoModal";
-
-import "./style.css";
 import Loader from "@/components/Loader/Loader";
+import "./style.css";
 
-export default function Form() {
+export default function Form({
+  infoOpen,
+  setInfoOpen,
+  SetTypeToast,
+  setToastOpen,
+}) {
   const router = useRouter();
   const [ip, setIp] = useState();
   const phoneInput = useRef(null);
   const [Loading, setLoading] = useState(false);
   const [buttonEnabled, setbuttonEnabled] = useState(false);
   const [utmFromLocaleStorage, setUtmFromLocaleStorage] = useState(false);
-  const [toastOpen, setToastOpen] = useState(false);
-  const [infoOpen, setInfoOpen] = useState(false);
-  const [typeToast, SetTypeToast] = useState();
 
   useEffect(() => {
     let value;
@@ -61,12 +60,13 @@ export default function Form() {
   function ResultSendFormSuccess(data) {
     let status = data.data.status;
     if (status === 1) {
-      SetTypeToast("success");
-      setLoading(false);
       router.push("/thanks");
     } else if (status === 2) {
       setInfoOpen(true);
       setLoading(false);
+    } else if (status === 0) {
+      setToastOpen(true);
+      SetTypeToast("error");
     } else {
       console.error("неизвесный статус");
     }
@@ -74,6 +74,7 @@ export default function Form() {
 
   function ResultSendFormErr() {
     setToastOpen(true);
+    setLoading(false);
     SetTypeToast("error");
   }
 
@@ -186,16 +187,6 @@ export default function Form() {
           </Link>
         </div>
       </form>
-
-      {toastOpen && (
-        <Toast
-          typeToast={typeToast}
-          setToastOpen={setToastOpen}
-          toastOpen={toastOpen}
-        />
-      )}
-      {/*
-      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} infoOpen={infoOpen} />}*/}
     </>
   );
 }

@@ -60,11 +60,15 @@ export default function RequestModal({
     setShowModal(false);
     if (status === 1) {
       setToastOpen(true);
-      setLoading(false);
+      setShowModal(false);
       SetTypeToast("success");
     } else if (status === 2) {
       setInfoOpen(true);
-      setLoading(false);
+      setShowModal(false);
+    } else if (status === 0) {
+      setToastOpen(true);
+      SetTypeToast("error");
+      setShowModal(false);
     } else {
       console.error("неизвесный статус");
     }

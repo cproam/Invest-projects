@@ -127,6 +127,10 @@ export default function PresentationModal({
       } else if (status === 2) {
         setInfoOpen(true);
         setShowModal(false);
+      } else if (status === 0) {
+        setToastOpen(true);
+        SetTypeToast("error");
+        setShowModal(false);
       } else {
         console.error("неизвесный статус");
       }

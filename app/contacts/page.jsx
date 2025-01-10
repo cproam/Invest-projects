@@ -1,21 +1,28 @@
+"use client";
 import Link from "next/link";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { telephone, telephoneMailto, email } from "../../lib/tel";
 import TheHeader from "@/components/TheHeader/TheHeader";
+import InfoModal from "@/components/Modals/InfoModal";
 import Form from "./Form";
 import "./style.css";
 import Head from "next/head";
+import Toast from "@/components/Modals/Toast";
 
+/*
 export const metadata = {
   title: "Каталог инвестиционных проектов",
   description: "Каталог инвестиционных проектов",
   keywords: "Каталог инвестиционных проектов",
 };
-
+*/
 export default function Contacts() {
+  const [toastOpen, setToastOpen] = useState(false);
+  const [typeToast, SetTypeToast] = useState();
+  const [infoOpen, setInfoOpen] = useState(false);
+
   return (
     <>
-      {" "}
       <Head />
       <section id="main" className="main">
         <TheHeader />
@@ -32,11 +39,26 @@ export default function Contacts() {
             </Link>
           </div>
           <Suspense>
-            <Form />
+            <Form
+              infoOpen={infoOpen}
+              setInfoOpen={setInfoOpen}
+              setToastOpen={setToastOpen}
+              SetTypeToast={SetTypeToast}
+            />
           </Suspense>
           <div style={{ paddingBottom: "20px" }}></div>
         </div>
       </section>
+
+      {toastOpen && (
+        <Toast
+          typeToast={typeToast}
+          setToastOpen={setToastOpen}
+          toastOpen={toastOpen}
+        />
+      )}
+
+      {infoOpen && <InfoModal setInfoOpen={setInfoOpen} infoOpen={infoOpen} />}
     </>
   );
 }
