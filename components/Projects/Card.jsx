@@ -49,7 +49,7 @@ export default function Card({ p }) {
                   <strong>
                     <div className={styles.label}>Доходность *</div>
                   </strong>
-                  <div className={styles.value}>{p.profit}% в месяц</div>
+                  <div className={styles.value}>{p.profit}% в год</div>
                 </li>
               </ul>
               <div className={styles.button}>
