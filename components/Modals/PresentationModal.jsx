@@ -125,7 +125,8 @@ export default function PresentationModal({
       if (status === 1) {
         setToastOpen(true);
         setShowModal(false);
-        ym(YM_ID, "reachGoal", "goalUsers");
+        yaCounter99046682.reachGoal("goalUsers");
+        // ym(YM_ID, "reachGoal", "goalUsers");
         SetTypeToast("success");
       } else if (status === 2) {
         setInfoOpen(true);

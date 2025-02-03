@@ -64,7 +64,7 @@ export default function RequestModal({
       setToastOpen(true);
       setShowModal(false);
       SetTypeToast("success");
-      ym(YM_ID, "reachGoal", "goalClients");
+      yaCounter99046682.reachGoal("goalClients");
     } else if (status === 2) {
       setInfoOpen(true);
       setShowModal(false);

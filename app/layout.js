@@ -3,6 +3,7 @@ import TheFooter from "@/components/TheFooter/TheFooter";
 import { GetUTMParams } from "@/lib/GetUTMParams";
 import YandexMetrikaContainer from "@/lib/yandexMetrika";
 import Head from "next/head";
+import { Suspense } from "react";
 
 export default function RootLayout({ children }) {
   return (
@@ -16,8 +17,10 @@ export default function RootLayout({ children }) {
 
       <body>
         <main>{children}</main>
+        <Suspense>
+          <YandexMetrikaContainer />
+        </Suspense>
         <TheFooter />
-        <YandexMetrikaContainer />
       </body>
     </html>
   );
