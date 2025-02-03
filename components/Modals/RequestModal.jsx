@@ -8,6 +8,7 @@ import { fetchIp } from "@/services/ip";
 import { SendForm } from "@/services/sendForm";
 import Loader from "../Loader/Loader";
 import ym from "react-yandex-metrika";
+import { YM_ID } from "@/lib/tel";
 
 export default function RequestModal({
   setShowModal,
@@ -63,7 +64,7 @@ export default function RequestModal({
       setToastOpen(true);
       setShowModal(false);
       SetTypeToast("success");
-      ym(process.env.YM_COUNTER_ID, "reachGoal", "goalClients");
+      ym(YM_ID, "reachGoal", "goalClients");
     } else if (status === 2) {
       setInfoOpen(true);
       setShowModal(false);
