@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "dotenv": "^16.4.5",
-    "next": "14.2.16",
+    "next": "^14.2.23",
     "next-cors": "^1.0.0",
     "next-navigation": "^1.0.6",
     "query-string": "^9.1.1",
