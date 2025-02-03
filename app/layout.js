@@ -17,9 +17,7 @@ export default function RootLayout({ children }) {
 
       <body>
         <main>{children}</main>
-        <Suspense>
-          <YandexMetrikaContainer />
-        </Suspense>
+        <YandexMetrikaContainer />
         <TheFooter />
       </body>
     </html>
