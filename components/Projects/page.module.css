@@ -4,16 +4,15 @@
     border-radius: 8px;
     margin-bottom: 10px;
     display: grid;
-    grid-template-columns: 600px 1fr 1fr;
-    grid-template-rows: 75px 168px auto;
+    grid-template-columns: 540px 1fr 1fr;
+    grid-template-rows: auto;
     gap: 20px;
     color: var(--color-text-item);
+    box-shadow: 0px 1px 2px 0px rgb(0 0 0 / 10%);
 }
 
 .item .header {
     grid-column: 2 / 4;
-    grid-row: 1 / 1;
-
 }
 
 .item .title {
@@ -28,7 +27,6 @@
 
 .item .description {
     grid-column: 2 / 4;
-    grid-row: 2 / 2;
     align-content: flex-start;
     overflow: hidden;
     margin: 0;
@@ -37,13 +35,14 @@
     color: var(--color-text-muted);
     font-size: 18px;
     font-weight: 500;
-
 }
 
+.item .slider {
+    grid-row: 1 / 4;
+}
 
 .item .footer {
     grid-column: 2 / 4;
-    grid-row: 3 / 3;
 }
 
 

@@ -16,13 +16,14 @@
 .swiper-slide img {
     display: block;
     width: 100%;
-    aspect-ratio: 5 / 3;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
+    border-radius: 6px;
 }
 
 .item .slider {
-    width: 600px;
-    height: 360px;
+    width: 540px;
+    height: 304px;
     margin: 0;
     overflow: hidden;
     position: relative;

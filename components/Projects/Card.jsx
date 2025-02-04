@@ -26,7 +26,7 @@ export default function Card({ p }) {
           <>
             <div className={styles.header}>
               <div className={styles.title}>{p.title}</div>
-              <div className={styles.tag}>{p.group}</div>
+              {/* <div className={styles.tag}>{p.group}</div> */}
             </div>
             <div className={styles.slider}>
               <div className={styles.slider__wrap}>
