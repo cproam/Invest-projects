@@ -6,9 +6,6 @@ export default async function handler(req, res) {
     origin: "*",
     optionsSuccessStatus: 200,
   });
-
-  // console.log(process.env.DB_HOST);
-
   let response = await fetch(
     process.env.DB_HOST +
     "?" +
